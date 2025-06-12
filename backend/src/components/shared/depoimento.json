@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_shared_depoimentos",
+  "info": {
+    "displayName": "Depoimento",
+    "description": "Depoimento de artesãs ou pessoas relacionadas à Renda de Filé"
+  },
+  "options": {},
+  "attributes": {
+    "nome": {
+      "type": "string",
+      "required": true
+    },
+    "cargo_funcao": {
+      "type": "string",
+      "required": false
+    },
+    "depoimento": {
+      "type": "text",
+      "required": true
+    },
+    "foto": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "associacao": {
+      "type": "string",
+      "required": false
+    }
+  }
+}

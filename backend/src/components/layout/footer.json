@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_layout_footers",
+  "info": {
+    "displayName": "Footer",
+    "description": "Configurações do rodapé do site"
+  },
+  "options": {},
+  "attributes": {
+    "texto_copyright": {
+      "type": "string"
+    },
+    "descricao_site": {
+      "type": "text"
+    },
+    "links_uteis": {
+      "type": "component",
+      "component": "navegacao.link-util",
+      "repeatable": true
+    }
+  }
+}

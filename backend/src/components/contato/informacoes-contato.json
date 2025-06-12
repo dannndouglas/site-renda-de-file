@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_contato_informacoes_contatos",
+  "info": {
+    "displayName": "Informações de Contato",
+    "description": "Informações de contato da organização"
+  },
+  "options": {},
+  "attributes": {
+    "telefone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "endereco": {
+      "type": "text"
+    },
+    "redes_sociais": {
+      "type": "component",
+      "component": "contato.redes-sociais",
+      "repeatable": false
+    }
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "kind": "singleType",
+  "collectionName": "pagina_inicials",
+  "info": {
+    "singularName": "pagina-inicial",
+    "pluralName": "pagina-inicials",
+    "displayName": "pagina-inicial",
+    "description": "Configurações e conteúdo da página inicial"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titulo_principal": {
+      "type": "string",
+      "default": "Renda de Filé de Jaguaribe",
+      "required": true
+    },
+    "subtitulo": {
+      "type": "string",
+      "default": "Preservando a tradição artesanal e promovendo a cultura cearense",
+      "required": true
+    },
+    "imagem_secao_sobre": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "imagem_fundo_hero": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "video_hero": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "videos"
+      ]
+    },
+    "secao_sobre": {
+      "type": "component",
+      "component": "secoes.secao-sobre",
+      "repeatable": false
+    },
+    "estatisticas": {
+      "type": "component",
+      "component": "secoes.estatisticas",
+      "repeatable": false
+    },
+    "galeria_destaque": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "video_institucional": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "videos"
+      ]
+    },
+    "texto_chamada_acao": {
+      "type": "string",
+      "default": "Conheça Nossa História"
+    },
+    "link_chamada_acao": {
+      "type": "string",
+      "default": "/sobre"
+    },
+    "mostrar_associacoes": {
+      "type": "boolean",
+      "default": true
+    },
+    "mostrar_noticias": {
+      "type": "boolean",
+      "default": true
+    },
+    "mostrar_estatisticas": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

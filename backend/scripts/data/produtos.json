@@ -1,0 +1,29 @@
+[
+  {
+    "nome": "Toalha de Mesa Floral",
+    "descricao": "\n        <p>Elegante toalha de mesa em Renda de Filé com motivos florais delicados. Peça artesanal confeccionada com fio de algodão de alta qualidade, perfeita para ocasiões especiais.</p>\n        <p>Dimensões: 1,50m x 2,00m</p>\n        <p>Tempo de confecção: 3 semanas</p>\n      ",
+    "categoria": "Cama, Mesa e Banho",
+    "slug": "toalha-mesa-floral",
+    "preco": 280,
+    "disponivel": true,
+    "publishedAt": "2025-06-10T21:01:01.573Z"
+  },
+  {
+    "nome": "Cortina Borboletas",
+    "descricao": "\n        <p>Cortina em Renda de Filé com padrão de borboletas, ideal para decorar janelas e ambientes. Confeccionada artesanalmente com técnicas tradicionais.</p>\n        <p>Dimensões: 1,20m x 1,80m</p>\n        <p>Pode ser feita sob medida</p>\n      ",
+    "categoria": "Decoração",
+    "slug": "cortina-borboletas",
+    "preco": 180,
+    "disponivel": true,
+    "publishedAt": "2025-06-10T21:01:01.573Z"
+  },
+  {
+    "nome": "Blusa Tradicional",
+    "descricao": "\n        <p>Blusa feminina em Renda de Filé, peça única que combina tradição e elegância. Ideal para eventos especiais e uso casual sofisticado.</p>\n        <p>Tamanhos disponíveis: P, M, G</p>\n        <p>Forro em algodão incluso</p>\n      ",
+    "categoria": "Vestuário",
+    "slug": "blusa-tradicional",
+    "preco": 120,
+    "disponivel": true,
+    "publishedAt": "2025-06-10T21:01:01.573Z"
+  }
+]

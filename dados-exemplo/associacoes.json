@@ -1,0 +1,54 @@
+[
+  {
+    "nome": "Associação das Artesãs do Centro",
+    "historia": "<p>Fundada em 1985, a Associação das Artesãs do Centro é uma das mais tradicionais de Jaguaribe. Nasceu da união de mulheres que desejavam preservar a arte da Renda de Filé e criar oportunidades de renda para suas famílias.</p>\n\n<p>Com mais de 30 artesãs associadas, a organização se destaca pela qualidade de suas peças e pela dedicação em ensinar as técnicas tradicionais para as novas gerações. Suas criações incluem toalhas de mesa, cortinas, colchas e peças decorativas que encantam por sua delicadeza e perfeição técnica.</p>\n\n<p>A associação participa regularmente de feiras e exposições, levando a arte da Renda de Filé de Jaguaribe para todo o Brasil e contribuindo para a valorização da cultura local.</p>",
+    "endereco_completo": "Rua Coronel José Sabino, 123, Centro, Jaguaribe, CE, Brasil",
+    "slug": "associacao-artesas-centro",
+    "contatos": {
+      "telefone": "(88) 3521-1234",
+      "email": "centro@rendadefilejaguaribe.com.br",
+      "whatsapp": "(88) 99876-5432",
+      "instagram": "artesascentrojaguaribe",
+      "facebook": "associacaoartesascentro"
+    }
+  },
+  {
+    "nome": "Cooperativa Mãos de Ouro",
+    "historia": "<p>A Cooperativa Mãos de Ouro foi criada em 1992 com o objetivo de fortalecer a comercialização dos produtos das artesãs de Jaguaribe. Reúne artesãs de diferentes bairros da cidade, promovendo a troca de conhecimentos e técnicas.</p>\n\n<p>Conhecida por suas inovações na arte tradicional, a cooperativa desenvolve novos padrões e designs, sempre respeitando as técnicas ancestrais. Suas peças são reconhecidas pela criatividade e pela alta qualidade dos acabamentos.</p>\n\n<p>A cooperativa mantém um espaço de vendas permanente e oferece cursos de capacitação para jovens interessados em aprender a arte da Renda de Filé.</p>",
+    "endereco_completo": "Avenida Getúlio Vargas, 456, São José, Jaguaribe, CE, Brasil",
+    "slug": "cooperativa-maos-de-ouro",
+    "contatos": {
+      "telefone": "(88) 3521-5678",
+      "email": "maosdeourojaguaribe@gmail.com",
+      "whatsapp": "(88) 99123-4567",
+      "instagram": "maosdeourojaguaribe",
+      "facebook": "cooperativamaosdeourojaguaribe",
+      "site": "www.maosdeourojaguaribe.com.br"
+    }
+  },
+  {
+    "nome": "Grupo Tradição e Arte",
+    "historia": "<p>O Grupo Tradição e Arte é formado por artesãs que se dedicam especialmente à preservação dos padrões mais antigos da Renda de Filé. Fundado em 2001, o grupo surgiu da preocupação de algumas mestras em manter vivos os desenhos e técnicas que estavam sendo esquecidos.</p>\n\n<p>Suas integrantes são verdadeiras guardiãs da tradição, dominando técnicas complexas que poucas pessoas ainda conhecem. O grupo se dedica também à pesquisa histórica, documentando padrões antigos e suas origens.</p>\n\n<p>Além da produção artesanal, o grupo oferece oficinas e palestras sobre a história da Renda de Filé, contribuindo para a educação cultural da comunidade.</p>",
+    "endereco_completo": "Rua Francisco Alves, 789, Vila Nova, Jaguaribe, CE, Brasil",
+    "slug": "grupo-tradicao-arte",
+    "contatos": {
+      "telefone": "(88) 3521-9012",
+      "email": "tradicaoarte@outlook.com",
+      "whatsapp": "(88) 99234-5678",
+      "instagram": "tradicaoartejaguaribe"
+    }
+  },
+  {
+    "nome": "Associação Flores do Sertão",
+    "historia": "<p>A Associação Flores do Sertão foi fundada em 2005 por um grupo de jovens artesãs que desejavam modernizar a arte da Renda de Filé sem perder sua essência tradicional. O nome reflete a beleza que floresce mesmo nas condições mais áridas do sertão.</p>\n\n<p>Especializada em peças com motivos florais e da natureza, a associação se destaca por criar designs contemporâneos que dialogam com a tradição. Suas artesãs são conhecidas pela precisão dos pontos e pela criatividade na combinação de cores.</p>\n\n<p>A associação desenvolve projetos sociais, oferecendo cursos gratuitos para mulheres em situação de vulnerabilidade social, promovendo a inclusão através da arte.</p>",
+    "endereco_completo": "Rua José de Alencar, 321, Cohab, Jaguaribe, CE, Brasil",
+    "slug": "associacao-flores-sertao",
+    "contatos": {
+      "telefone": "(88) 3521-7890",
+      "email": "floresdosertao@gmail.com",
+      "whatsapp": "(88) 99345-6789",
+      "instagram": "floresdosertaojaguaribe",
+      "facebook": "associacaofloresdesertao"
+    }
+  }
+]

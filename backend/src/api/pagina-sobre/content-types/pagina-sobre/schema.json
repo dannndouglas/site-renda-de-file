@@ -1,0 +1,69 @@
+{
+  "kind": "singleType",
+  "collectionName": "pagina_sobres",
+  "info": {
+    "singularName": "pagina-sobre",
+    "pluralName": "pagina-sobres",
+    "displayName": "Página Sobre",
+    "description": "Conteúdo da página sobre a Renda de Filé"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titulo_pagina": {
+      "type": "string",
+      "default": "Sobre a Renda de Filé",
+      "required": true
+    },
+    "conteudo_historia": {
+      "type": "blocks",
+      "required": true
+    },
+    "imagem_historia": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "conteudo_processo_criacao": {
+      "type": "blocks",
+      "required": true
+    },
+    "imagem_processo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "video_processo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "videos"
+      ]
+    },
+    "galeria_imagens": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "imagem_fundo_cabecalho": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

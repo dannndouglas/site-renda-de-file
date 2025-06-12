@@ -1,0 +1,37 @@
+{
+  "kind": "singleType",
+  "collectionName": "pagina_contato",
+  "info": {
+    "singularName": "pagina-contato",
+    "pluralName": "paginas-contato",
+    "displayName": "Página Contato",
+    "description": "Conteúdo da página de contato"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titulo_pagina": {
+      "type": "string",
+      "default": "Entre em Contato",
+      "required": true
+    },
+    "subtitulo_pagina": {
+      "type": "string",
+      "default": "Estamos aqui para ajudar e responder suas dúvidas"
+    },
+    "imagem_fundo_cabecalho": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "conteudo_introducao": {
+      "type": "blocks",
+      "required": false
+    }
+  }
+}

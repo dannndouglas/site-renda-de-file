@@ -1,0 +1,50 @@
+{
+  "collectionName": "components_secoes_estatisticas",
+  "info": {
+    "displayName": "Estatísticas",
+    "description": "Números e estatísticas para a página inicial"
+  },
+  "options": {},
+  "attributes": {
+    "titulo": {
+      "type": "string",
+      "required": true,
+      "default": "Preservando Tradições, Criando Futuro"
+    },
+    "subtitulo": {
+      "type": "string",
+      "required": true,
+      "default": "Números que representam nossa dedicação à arte da Renda de Filé"
+    },
+    "numero_associacoes": {
+      "type": "integer",
+      "required": true,
+      "default": 5
+    },
+    "numero_artesas": {
+      "type": "integer",
+      "required": true,
+      "default": 150
+    },
+    "anos_tradicao": {
+      "type": "integer",
+      "required": true,
+      "default": 50
+    },
+    "pecas_criadas": {
+      "type": "integer",
+      "required": true,
+      "default": 1000
+    },
+    "cor_fundo": {
+      "type": "enumeration",
+      "enum": [
+        "amber",
+        "orange",
+        "blue",
+        "green"
+      ],
+      "default": "amber"
+    }
+  }
+}

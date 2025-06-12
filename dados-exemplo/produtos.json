@@ -1,0 +1,56 @@
+[
+  {
+    "nome": "Toalha de Mesa Floral Grande",
+    "descricao": "<p>Elegante toalha de mesa em Renda de Filé com motivos florais delicados. Peça artesanal confeccionada com fio de algodão de alta qualidade, perfeita para ocasiões especiais e decoração de ambientes sofisticados.</p>\n\n<p><strong>Características:</strong></p>\n<ul>\n<li>Dimensões: 1,50m x 2,00m</li>\n<li>Material: 100% algodão</li>\n<li>Tempo de confecção: 3 semanas</li>\n<li>Padrão: Flores e folhagens</li>\n<li>Acabamento: Bordas trabalhadas à mão</li>\n</ul>\n\n<p>Ideal para mesas de jantar, esta peça transforma qualquer refeição em um momento especial, combinando tradição e elegância.</p>",
+    "categoria": "Cama, Mesa e Banho",
+    "slug": "toalha-mesa-floral-grande",
+    "preco": 280,
+    "disponivel": true,
+    "associacao_origem": 1
+  },
+  {
+    "nome": "Cortina Borboletas",
+    "descricao": "<p>Cortina em Renda de Filé com padrão de borboletas, ideal para decorar janelas e ambientes. Confeccionada artesanalmente com técnicas tradicionais, traz leveza e charme para qualquer espaço.</p>\n\n<p><strong>Especificações:</strong></p>\n<ul>\n<li>Dimensões: 1,20m x 1,80m</li>\n<li>Padrão: Borboletas em voo</li>\n<li>Material: Fio de algodão mercerizado</li>\n<li>Pode ser feita sob medida</li>\n<li>Inclui varão para fixação</li>\n</ul>\n\n<p>Perfeita para quartos infantis, salas de estar ou qualquer ambiente que precise de um toque delicado e artesanal.</p>",
+    "categoria": "Decoração",
+    "slug": "cortina-borboletas",
+    "preco": 180,
+    "disponivel": true,
+    "associacao_origem": 2
+  },
+  {
+    "nome": "Blusa Tradicional Feminina",
+    "descricao": "<p>Blusa feminina em Renda de Filé, peça única que combina tradição e elegância contemporânea. Ideal para eventos especiais, uso casual sofisticado ou como peça de destaque no guarda-roupa.</p>\n\n<p><strong>Detalhes:</strong></p>\n<ul>\n<li>Tamanhos disponíveis: P, M, G, GG</li>\n<li>Forro em algodão incluso</li>\n<li>Mangas 3/4 com acabamento em renda</li>\n<li>Decote redondo clássico</li>\n<li>Padrão geométrico tradicional</li>\n</ul>\n\n<p>Uma peça versátil que pode ser usada com saias, calças ou vestidos, sempre garantindo um visual único e cheio de personalidade.</p>",
+    "categoria": "Vestuário",
+    "slug": "blusa-tradicional-feminina",
+    "preco": 120,
+    "disponivel": true,
+    "associacao_origem": 3
+  },
+  {
+    "nome": "Jogo de Cama Casal Completo",
+    "descricao": "<p>Jogo de cama casal completo em Renda de Filé, composto por lençol de cima, lençol de baixo e duas fronhas. Uma peça de luxo que transforma o quarto em um ambiente sofisticado e acolhedor.</p>\n\n<p><strong>Conjunto inclui:</strong></p>\n<ul>\n<li>1 Lençol superior (2,30m x 2,50m)</li>\n<li>1 Lençol inferior com elástico</li>\n<li>2 Fronhas (50cm x 70cm)</li>\n<li>Padrão floral delicado</li>\n<li>100% algodão de alta qualidade</li>\n</ul>\n\n<p>Confeccionado com técnicas tradicionais, este jogo de cama é uma verdadeira obra de arte têxtil que proporciona conforto e beleza.</p>",
+    "categoria": "Cama, Mesa e Banho",
+    "slug": "jogo-cama-casal-completo",
+    "preco": 450,
+    "disponivel": true,
+    "associacao_origem": 4
+  },
+  {
+    "nome": "Bolsa Artesanal Pequena",
+    "descricao": "<p>Bolsa pequena em Renda de Filé, perfeita para ocasiões especiais ou uso diário. Combina a delicadeza da renda tradicional com a praticidade de um acessório moderno.</p>\n\n<p><strong>Características:</strong></p>\n<ul>\n<li>Dimensões: 25cm x 20cm x 8cm</li>\n<li>Alça em couro sintético</li>\n<li>Forro interno em tecido</li>\n<li>Fechamento com zíper</li>\n<li>Bolso interno pequeno</li>\n</ul>\n\n<p>Um acessório único que valoriza qualquer produção, carregando consigo a história e a tradição da Renda de Filé de Jaguaribe.</p>",
+    "categoria": "Acessórios",
+    "slug": "bolsa-artesanal-pequena",
+    "preco": 85,
+    "disponivel": true,
+    "associacao_origem": 2
+  },
+  {
+    "nome": "Caminho de Mesa Geométrico",
+    "descricao": "<p>Caminho de mesa em Renda de Filé com padrão geométrico tradicional. Peça versátil que pode ser usada em mesas de jantar, aparadores, cômodas ou como elemento decorativo.</p>\n\n<p><strong>Especificações:</strong></p>\n<ul>\n<li>Dimensões: 40cm x 1,50m</li>\n<li>Padrão: Losangos e quadrados</li>\n<li>Bordas com acabamento especial</li>\n<li>Fácil manutenção</li>\n<li>Pode ser lavado à mão</li>\n</ul>\n\n<p>Ideal para dar um toque especial à decoração, este caminho de mesa é uma peça coringa que combina com diversos estilos decorativos.</p>",
+    "categoria": "Decoração",
+    "slug": "caminho-mesa-geometrico",
+    "preco": 95,
+    "disponivel": true,
+    "associacao_origem": 1
+  }
+]

@@ -1,0 +1,40 @@
+{
+  "collectionName": "components_shared_estatisticas",
+  "info": {
+    "displayName": "Estatísticas",
+    "description": "Estatísticas sobre a Renda de Filé de Jaguaribe"
+  },
+  "options": {},
+  "attributes": {
+    "total_associacoes": {
+      "type": "integer",
+      "required": false,
+      "default": 0
+    },
+    "total_artesas": {
+      "type": "integer",
+      "required": false,
+      "default": 0
+    },
+    "anos_tradicao": {
+      "type": "integer",
+      "required": false,
+      "default": 0
+    },
+    "pecas_produzidas": {
+      "type": "integer",
+      "required": false,
+      "default": 0
+    },
+    "familias_beneficiadas": {
+      "type": "integer",
+      "required": false,
+      "default": 0
+    },
+    "municipios_atendidos": {
+      "type": "integer",
+      "required": false,
+      "default": 0
+    }
+  }
+}

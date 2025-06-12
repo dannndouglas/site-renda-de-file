@@ -1,0 +1,58 @@
+{
+  "kind": "collectionType",
+  "collectionName": "noticia_eventos",
+  "info": {
+    "singularName": "noticia-evento",
+    "pluralName": "noticia-eventos",
+    "displayName": "noticia-evento"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titulo": {
+      "type": "string",
+      "required": true
+    },
+    "conteudo": {
+      "type": "blocks",
+      "required": true
+    },
+    "data_evento": {
+      "type": "date",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "titulo",
+      "required": true
+    },
+    "tipo": {
+      "type": "enumeration",
+      "default": "Notícia",
+      "enum": [
+        "Notícia",
+        "Evento"
+      ]
+    },
+    "imagem_destaque": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "galeria": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "video": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["videos"]
+    }
+  }
+}

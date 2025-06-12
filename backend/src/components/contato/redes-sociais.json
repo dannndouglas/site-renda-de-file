@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_contato_redes_sociais",
+  "info": {
+    "displayName": "Redes Sociais",
+    "description": "Links para redes sociais"
+  },
+  "options": {},
+  "attributes": {
+    "facebook": {
+      "type": "string"
+    },
+    "instagram": {
+      "type": "string"
+    },
+    "youtube": {
+      "type": "string"
+    },
+    "whatsapp": {
+      "type": "string"
+    },
+    "twitter": {
+      "type": "string"
+    },
+    "linkedin": {
+      "type": "string"
+    }
+  }
+}

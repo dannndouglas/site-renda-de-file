@@ -1,0 +1,25 @@
+[
+  {
+    "titulo": "Festival da Renda de Filé 2025",
+    "conteudo": "\n        <p>Jaguaribe se prepara para receber o maior evento de Renda de Filé do Ceará. O Festival da Renda de Filé 2025 acontecerá nos dias 15, 16 e 17 de março, reunindo artesãs de todo o estado para celebrar esta arte tradicional.</p>\n        \n        <p>O evento contará com:</p>\n        <ul>\n          <li>Exposição de peças históricas e contemporâneas</li>\n          <li>Oficinas gratuitas para iniciantes</li>\n          <li>Concurso de melhor peça artesanal</li>\n          <li>Feira de produtos das associações locais</li>\n          <li>Palestras sobre a história da Renda de Filé</li>\n        </ul>\n        \n        <p>A entrada é gratuita e o evento acontecerá na Praça Central de Jaguaribe. Esperamos receber mais de 5.000 visitantes durante os três dias de festival.</p>\n        \n        <p>Para mais informações, entre em contato com a organização através do telefone (88) 3521-0000 ou pelo e-mail festival@rendadefilejaguaribe.com.br</p>\n      ",
+    "data_evento": "2025-03-15T09:00:00.000Z",
+    "slug": "festival-renda-file-2025",
+    "tipo": "Evento",
+    "publishedAt": "2025-06-10T21:01:01.573Z"
+  },
+  {
+    "titulo": "Nova Exposição no Museu do Artesanato",
+    "conteudo": "\n        <p>O Museu do Artesanato de Fortaleza inaugura uma nova exposição dedicada exclusivamente à Renda de Filé de Jaguaribe. A mostra \"Fios da Tradição\" apresenta mais de 50 peças que contam a história desta arte centenária.</p>\n        \n        <p>A exposição inclui peças históricas do século XIX, trabalhos contemporâneos das principais artesãs da região e um espaço interativo onde os visitantes podem aprender sobre as técnicas de confecção.</p>\n        \n        <p>A curadoria foi feita em parceria com as associações de artesãs de Jaguaribe, garantindo autenticidade e representatividade na seleção das obras expostas.</p>\n        \n        <p>A exposição fica em cartaz até 30 de junho de 2025, com entrada gratuita às terças-feiras.</p>\n      ",
+    "slug": "exposicao-museu-artesanato",
+    "tipo": "Notícia",
+    "publishedAt": "2025-06-10T21:01:01.573Z"
+  },
+  {
+    "titulo": "Curso de Renda de Filé para Iniciantes",
+    "conteudo": "\n        <p>A Associação das Artesãs do Centro anuncia a abertura de inscrições para o curso básico de Renda de Filé. O curso é destinado a pessoas que desejam aprender esta arte tradicional, sem necessidade de conhecimento prévio.</p>\n        \n        <p><strong>Informações do curso:</strong></p>\n        <ul>\n          <li>Duração: 8 semanas (2 aulas por semana)</li>\n          <li>Horário: Terças e quintas, das 14h às 16h</li>\n          <li>Local: Sede da Associação das Artesãs do Centro</li>\n          <li>Investimento: R$ 80,00 (material incluso)</li>\n          <li>Vagas: 15 participantes</li>\n        </ul>\n        \n        <p>As inscrições podem ser feitas presencialmente na sede da associação ou pelo telefone (88) 3521-1234. As aulas começam no dia 10 de fevereiro.</p>\n        \n        <p>Ao final do curso, os participantes receberão certificado de conclusão e terão produzido sua primeira peça em Renda de Filé.</p>\n      ",
+    "data_evento": "2025-02-10T14:00:00.000Z",
+    "slug": "curso-renda-file-iniciantes",
+    "tipo": "Evento",
+    "publishedAt": "2025-06-10T21:01:01.573Z"
+  }
+]

@@ -1,0 +1,37 @@
+{
+  "kind": "singleType",
+  "collectionName": "pagina_produtos",
+  "info": {
+    "singularName": "pagina-produtos",
+    "pluralName": "paginas-produtos",
+    "displayName": "Página Produtos",
+    "description": "Conteúdo da página de produtos"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titulo_pagina": {
+      "type": "string",
+      "default": "Nossos Produtos",
+      "required": true
+    },
+    "subtitulo_pagina": {
+      "type": "string",
+      "default": "Descubra a beleza e qualidade da Renda de Filé"
+    },
+    "imagem_fundo_cabecalho": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "conteudo_introducao": {
+      "type": "blocks",
+      "required": false
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_navegacao_item_menus",
+  "info": {
+    "displayName": "Item de Menu",
+    "description": "Item individual do menu de navegação"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "ordem": {
+      "type": "integer",
+      "required": true,
+      "default": 1
+    },
+    "abrir_nova_aba": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

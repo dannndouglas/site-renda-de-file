@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_navegacao_link_utils",
+  "info": {
+    "displayName": "Link Útil",
+    "description": "Link útil para o footer"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

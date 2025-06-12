@@ -1,0 +1,41 @@
+[
+  {
+    "nome": "Associação das Artesãs do Centro",
+    "historia": "\n        <p>Fundada em 1985, a Associação das Artesãs do Centro é uma das mais tradicionais de Jaguaribe. Nasceu da união de mulheres que desejavam preservar a arte da Renda de Filé e criar oportunidades de renda para suas famílias.</p>\n        \n        <p>Com mais de 30 artesãs associadas, a organização se destaca pela qualidade de suas peças e pela dedicação em ensinar as técnicas tradicionais para as novas gerações. Suas criações incluem toalhas de mesa, cortinas, colchas e peças decorativas que encantam por sua delicadeza e perfeição técnica.</p>\n        \n        <p>A associação participa regularmente de feiras e exposições, levando a arte da Renda de Filé de Jaguaribe para todo o Brasil e contribuindo para a valorização da cultura local.</p>\n      ",
+    "endereco_completo": "Rua das Flores, 123, Centro, Jaguaribe, CE",
+    "slug": "associacao-artesas-centro",
+    "contatos": {
+      "telefone": "(88) 3521-1234",
+      "email": "centro@rendadefilejaguaribe.com.br",
+      "whatsapp": "(88) 99876-5432",
+      "instagram": "artesascentrojaguaribe"
+    },
+    "publishedAt": "2025-06-10T21:01:01.573Z"
+  },
+  {
+    "nome": "Cooperativa Mãos de Ouro",
+    "historia": "\n        <p>A Cooperativa Mãos de Ouro foi criada em 1992 com o objetivo de fortalecer a comercialização dos produtos das artesãs de Jaguaribe. Reúne artesãs de diferentes bairros da cidade, promovendo a troca de conhecimentos e técnicas.</p>\n        \n        <p>Conhecida por suas inovações na arte tradicional, a cooperativa desenvolve novos padrões e designs, sempre respeitando as técnicas ancestrais. Suas peças são reconhecidas pela criatividade e pela alta qualidade dos acabamentos.</p>\n        \n        <p>A cooperativa mantém um espaço de vendas permanente e oferece cursos de capacitação para jovens interessados em aprender a arte da Renda de Filé.</p>\n      ",
+    "endereco_completo": "Avenida Principal, 456, São José, Jaguaribe, CE",
+    "slug": "cooperativa-maos-de-ouro",
+    "contatos": {
+      "telefone": "(88) 3521-5678",
+      "email": "maosdeourojaguaribe@gmail.com",
+      "whatsapp": "(88) 99123-4567",
+      "instagram": "maosdeourojaguaribe",
+      "facebook": "cooperativamaosdeourojaguaribe"
+    },
+    "publishedAt": "2025-06-10T21:01:01.573Z"
+  },
+  {
+    "nome": "Grupo Tradição e Arte",
+    "historia": "\n        <p>O Grupo Tradição e Arte é formado por artesãs que se dedicam especialmente à preservação dos padrões mais antigos da Renda de Filé. Fundado em 2001, o grupo surgiu da preocupação de algumas mestras em manter vivos os desenhos e técnicas que estavam sendo esquecidos.</p>\n        \n        <p>Suas integrantes são verdadeiras guardiãs da tradição, dominando técnicas complexas que poucas pessoas ainda conhecem. O grupo se dedica também à pesquisa histórica, documentando padrões antigos e suas origens.</p>\n        \n        <p>Além da produção artesanal, o grupo oferece oficinas e palestras sobre a história da Renda de Filé, contribuindo para a educação cultural da comunidade.</p>\n      ",
+    "endereco_completo": "Rua da Tradição, 789, Vila Nova, Jaguaribe, CE",
+    "slug": "grupo-tradicao-arte",
+    "contatos": {
+      "telefone": "(88) 3521-9012",
+      "email": "tradicaoarte@outlook.com",
+      "whatsapp": "(88) 99234-5678"
+    },
+    "publishedAt": "2025-06-10T21:01:01.573Z"
+  }
+]

@@ -1,0 +1,37 @@
+{
+  "kind": "singleType",
+  "collectionName": "pagina_noticias",
+  "info": {
+    "singularName": "pagina-noticias",
+    "pluralName": "paginas-noticias",
+    "displayName": "Página Notícias",
+    "description": "Conteúdo da página de notícias e eventos"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titulo_pagina": {
+      "type": "string",
+      "default": "Notícias e Eventos",
+      "required": true
+    },
+    "subtitulo_pagina": {
+      "type": "string",
+      "default": "Fique por dentro das novidades e eventos da Renda de Filé"
+    },
+    "imagem_fundo_cabecalho": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "conteudo_introducao": {
+      "type": "blocks",
+      "required": false
+    }
+  }
+}

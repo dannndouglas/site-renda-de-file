@@ -1,0 +1,37 @@
+{
+  "kind": "singleType",
+  "collectionName": "pagina_associacoes",
+  "info": {
+    "singularName": "pagina-associacoes",
+    "pluralName": "paginas-associacoes",
+    "displayName": "Página Associações",
+    "description": "Conteúdo da página de associações"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titulo_pagina": {
+      "type": "string",
+      "default": "Nossas Associações",
+      "required": true
+    },
+    "subtitulo_pagina": {
+      "type": "string",
+      "default": "Conheça as talentosas artesãs que preservam nossa tradição"
+    },
+    "imagem_fundo_cabecalho": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "conteudo_introducao": {
+      "type": "blocks",
+      "required": false
+    }
+  }
+}

@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+body {
+  background: #ffffff;
+  color: #171717;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Menu Navigation - Seguindo boas práticas de web design */
+nav.desktop-nav {
+  display: flex !important;
+  gap: 1.5rem !important;
+  align-items: center !important;
+}
+
+@media (max-width: 767px) {
+  nav.desktop-nav {
+    display: none !important;
+  }
+}
+
+/* Menu items com melhor acessibilidade e UX */
+nav.desktop-nav a {
+  display: inline-block !important;
+  color: #374151 !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+  font-size: 0.95rem !important;
+  padding: 0.5rem 0.75rem !important;
+  border-radius: 0.375rem !important;
+  transition: all 0.2s ease-in-out !important;
+  position: relative !important;
+  letter-spacing: 0.025em !important;
+}
+
+/* Hover effects melhorados */
+nav.desktop-nav a:hover {
+  color: #d97706 !important;
+  background-color: rgba(217, 119, 6, 0.1) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Active/current page indicator */
+nav.desktop-nav a.active {
+  color: #d97706 !important;
+  background-color: rgba(217, 119, 6, 0.15) !important;
+  font-weight: 600 !important;
+}
+
+/* Focus states para acessibilidade */
+nav.desktop-nav a:focus {
+  outline: 2px solid #d97706 !important;
+  outline-offset: 2px !important;
+}
+
+/* Underline animation */
+nav.desktop-nav a::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 50% !important;
+  width: 0 !important;
+  height: 2px !important;
+  background-color: #d97706 !important;
+  transition: all 0.3s ease !important;
+  transform: translateX(-50%) !important;
+}
+
+nav.desktop-nav a:hover::after,
+nav.desktop-nav a.active::after {
+  width: 80% !important;
+}
+
+/* Classe específica para links do menu */
+.menu-link {
+  display: inline-block !important;
+  color: #374151 !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+  font-size: 0.95rem !important;
+  padding: 0.5rem 0.75rem !important;
+  border-radius: 0.375rem !important;
+  transition: all 0.2s ease-in-out !important;
+  position: relative !important;
+  letter-spacing: 0.025em !important;
+}
+
+.menu-link:hover {
+  color: #d97706 !important;
+  background-color: rgba(217, 119, 6, 0.1) !important;
+  transform: translateY(-1px) !important;
+}
+
+.menu-link.active {
+  color: #d97706 !important;
+  background-color: rgba(217, 119, 6, 0.15) !important;
+  font-weight: 600 !important;
+}
+
+.menu-link:focus {
+  outline: 2px solid #d97706 !important;
+  outline-offset: 2px !important;
+}
+
+.menu-link::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 50% !important;
+  width: 0 !important;
+  height: 2px !important;
+  background-color: #d97706 !important;
+  transition: all 0.3s ease !important;
+  transform: translateX(-50%) !important;
+}
+
+.menu-link:hover::after,
+.menu-link.active::after {
+  width: 80% !important;
+}

@@ -1,0 +1,57 @@
+{
+  "kind": "singleType",
+  "collectionName": "configuracao_sites",
+  "info": {
+    "singularName": "configuracao-site",
+    "pluralName": "configuracao-sites",
+    "displayName": "Configuração do Site",
+    "description": "Configurações globais do site como logo, menu, contatos e footer"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nome_site": {
+      "type": "string",
+      "default": "Renda de Filé de Jaguaribe",
+      "required": true
+    },
+    "subtitulo_site": {
+      "type": "string",
+      "default": "",
+      "required": false
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "favicon": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "menu_items": {
+      "type": "component",
+      "component": "navegacao.item-menu",
+      "repeatable": true
+    },
+    "informacoes_contato": {
+      "type": "component",
+      "component": "contato.informacoes-contato",
+      "repeatable": false
+    },
+    "footer": {
+      "type": "component",
+      "component": "layout.footer",
+      "repeatable": false
+    }
+  }
+}
