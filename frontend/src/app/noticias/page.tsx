@@ -1,27 +1,23 @@
 import Link from 'next/link';
-import { getNoticiasEventos, convertRichTextToPlainText, getStrapiImageUrl, getConfiguracaoSite } from '@/lib/strapi';
+import { getNoticiasEventos, convertRichTextToPlainText, getStrapiImageUrl, getConfiguracaoSite, getPaginaNoticias } from '@/lib/strapi';
+import PageHeader from '@/components/PageHeader';
 
 export default async function NoticiasPage() {
-  const [noticiasEventos, configuracao] = await Promise.all([
+  const [noticiasEventos, configuracao, paginaNoticias] = await Promise.all([
     getNoticiasEventos(),
-    getConfiguracaoSite()
+    getConfiguracaoSite(),
+    getPaginaNoticias()
   ]);
 
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-amber-50 to-orange-100 py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-              Notícias e Eventos
-            </h1>
-            <p className="text-xl text-gray-600">
-              Fique por dentro das novidades e eventos da {configuracao?.attributes?.nome_site || 'Renda de Filé de Jaguaribe'}
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHeader
+        title={paginaNoticias?.titulo || paginaNoticias?.attributes?.titulo || 'Notícias e Eventos'}
+        subtitle={paginaNoticias?.subtitulo || paginaNoticias?.attributes?.subtitulo || `Fique por dentro das novidades e eventos da ${configuracao?.attributes?.nome_site || 'Renda de Filé de Jaguaribe'}`}
+        backgroundImage={paginaNoticias?.imagem_fundo_cabecalho || paginaNoticias?.attributes?.imagem_fundo_cabecalho}
+        backgroundPosition="center top"
+      />
 
       {/* Lista de Notícias e Eventos */}
       <section className="py-16">

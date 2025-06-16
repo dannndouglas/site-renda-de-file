@@ -1,24 +1,29 @@
 import Link from 'next/link';
-import { getAssociacoes, convertRichTextToPlainText, getStrapiImageUrl } from '@/lib/strapi';
+import { getAssociacoes, convertRichTextToPlainText, getStrapiImageUrl, getPaginaAssociacoes } from '@/lib/strapi';
+import PageHeader from '@/components/PageHeader';
 
 export default async function AssociacoesPage() {
-  const associacoes = await getAssociacoes();
+  const [associacoes, paginaAssociacoes] = await Promise.all([
+    getAssociacoes(),
+    getPaginaAssociacoes()
+  ]);
+
+  // Dados padrão quando a página não existe no Strapi
+  const dadosPagina = paginaAssociacoes || {
+    titulo: 'Nossas Associações',
+    subtitulo: 'Conheça as associações parceiras que preservam a tradição da Renda de Filé',
+    imagem_fundo_cabecalho: null
+  };
 
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-amber-50 to-orange-100 py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-              Nossas Associações
-            </h1>
-            <p className="text-xl text-gray-600">
-              Conheça as talentosas artesãs que preservam a tradição da Renda de Filé
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHeader
+        title={dadosPagina.titulo || dadosPagina.attributes?.titulo || 'Nossas Associações'}
+        subtitle={dadosPagina.subtitulo || dadosPagina.attributes?.subtitulo || 'Conheça as associações parceiras que preservam a tradição da Renda de Filé'}
+        backgroundImage={dadosPagina.imagem_fundo_cabecalho || dadosPagina.attributes?.imagem_fundo_cabecalho}
+        backgroundPosition="center top"
+      />
 
       {/* Lista de Associações */}
       <section className="py-16">
@@ -33,17 +38,17 @@ export default async function AssociacoesPage() {
                       {(associacao.logo || associacao.attributes?.logo) ? (
                         <img
                           src={getStrapiImageUrl(associacao.logo || associacao.attributes?.logo)}
-                          alt={(associacao.logo?.alternativeText || associacao.attributes?.logo?.alternativeText || associacao.nome || associacao.attributes?.nome)!}
+                          alt={associacao.nome || associacao.attributes?.nome || 'Logo da associação'}
                           className="max-h-full max-w-full object-contain"
                         />
                       ) : (
                         <div className="text-center">
                           <div className="w-16 h-16 bg-amber-600 rounded-full flex items-center justify-center mx-auto mb-2">
                             <span className="text-white font-bold text-xl">
-                              {associacao.nome.charAt(0)}
+                              {(associacao.nome || associacao.attributes?.nome || 'A').charAt(0)}
                             </span>
                           </div>
-                          <p className="text-gray-600 text-sm">{associacao.nome}</p>
+                          <p className="text-gray-600 text-sm">{associacao.nome || associacao.attributes?.nome}</p>
                         </div>
                       )}
                     </div>

@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getProdutos, getAssociacoes, convertRichTextToPlainText, getStrapiImageUrl } from '@/lib/strapi';
+import ProductImageGallery from '@/components/ProductImageGallery';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -60,39 +61,10 @@ export default async function ProdutoDetalhePage({ params }: Props) {
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               {/* Galeria de Imagens */}
-              <div className="space-y-4">
-                {(produto.fotos_produto || produto.attributes?.fotos_produto) && (produto.fotos_produto || produto.attributes?.fotos_produto).length > 0 ? (
-                  <>
-                    {/* Imagem Principal */}
-                    <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
-                      <img 
-                        src={getStrapiImageUrl((produto.fotos_produto || produto.attributes?.fotos_produto)?.[0])}
-                        alt={produto.nome || produto.attributes?.nome || ''}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    
-                    {/* Miniaturas */}
-                    {(produto.fotos_produto || produto.attributes?.fotos_produto).length > 1 && (
-                      <div className="grid grid-cols-4 gap-2">
-                        {(produto.fotos_produto || produto.attributes?.fotos_produto).slice(1, 5).map((foto: any, index: number) => (
-                          <div key={index} className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
-                            <img 
-                              src={getStrapiImageUrl(foto)}
-                              alt={`${produto.nome || produto.attributes?.nome} - Foto ${index + 2}`}
-                              className="w-full h-full object-cover hover:opacity-80 transition-opacity cursor-pointer"
-                            />
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  <div className="aspect-square bg-gray-100 rounded-lg flex items-center justify-center">
-                    <p className="text-gray-500">Sem imagens disponíveis</p>
-                  </div>
-                )}
-              </div>
+              <ProductImageGallery
+                images={produto.fotos_produto || produto.attributes?.fotos_produto || []}
+                productName={produto.nome || produto.attributes?.nome || ''}
+              />
 
               {/* Informações do Produto */}
               <div className="space-y-6">

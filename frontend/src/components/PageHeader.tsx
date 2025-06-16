@@ -6,21 +6,26 @@ interface PageHeaderProps {
   title: string;
   subtitle?: string;
   backgroundImage?: any;
+  backgroundPosition?: string;
   className?: string;
 }
 
-export default function PageHeader({ 
-  title, 
-  subtitle, 
-  backgroundImage, 
-  className = '' 
+export default function PageHeader({
+  title,
+  subtitle,
+  backgroundImage,
+  backgroundPosition = 'center center',
+  className = ''
 }: PageHeaderProps) {
-  const backgroundStyle = backgroundImage 
+  const imageUrl = backgroundImage ? getStrapiImageUrl(backgroundImage) : '';
+
+  const backgroundStyle = backgroundImage
     ? {
-        background: `linear-gradient(rgba(234, 88, 12, 0.8), rgba(194, 65, 12, 0.8)), url(${getStrapiImageUrl(backgroundImage)})`,
+        backgroundImage: `linear-gradient(rgba(234, 88, 12, 0.8), rgba(194, 65, 12, 0.8)), url(${imageUrl})`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed'
+        backgroundPosition: backgroundPosition,
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'scroll'
       }
     : {
         background: 'linear-gradient(135deg, #ea580c 0%, #c2410c 50%, #9a3412 100%)'

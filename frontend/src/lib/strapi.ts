@@ -382,7 +382,15 @@ export const getPaginaAssociacoes = async (): Promise<any | null> => {
   try {
     const response = await strapiApi.get<StrapiSingleResponse<any>>('/pagina-associacoes?populate=*');
     return response.data.data;
-  } catch (error) {
+  } catch (error: any) {
+    if (error.response?.status === 404) {
+      // Página não existe ainda no Strapi, retorna dados padrão
+      return {
+        titulo: 'Nossas Associações',
+        subtitulo: 'Conheça as associações parceiras que preservam a tradição da Renda de Filé',
+        imagem_fundo_cabecalho: null
+      };
+    }
     console.error('Erro ao buscar página associações:', error);
     return null;
   }
@@ -392,7 +400,15 @@ export const getPaginaProdutos = async (): Promise<any | null> => {
   try {
     const response = await strapiApi.get<StrapiSingleResponse<any>>('/pagina-produtos?populate=*');
     return response.data.data;
-  } catch (error) {
+  } catch (error: any) {
+    if (error.response?.status === 404) {
+      // Página não existe ainda no Strapi, retorna dados padrão
+      return {
+        titulo: 'Nossos Produtos',
+        subtitulo: 'Descubra a beleza e qualidade dos produtos artesanais em Renda de Filé',
+        imagem_fundo_cabecalho: null
+      };
+    }
     console.error('Erro ao buscar página produtos:', error);
     return null;
   }
@@ -402,7 +418,15 @@ export const getPaginaNoticias = async (): Promise<any | null> => {
   try {
     const response = await strapiApi.get<StrapiSingleResponse<any>>('/pagina-noticias?populate=*');
     return response.data.data;
-  } catch (error) {
+  } catch (error: any) {
+    if (error.response?.status === 404) {
+      // Página não existe ainda no Strapi, retorna dados padrão
+      return {
+        titulo: 'Notícias e Eventos',
+        subtitulo: 'Fique por dentro das novidades e eventos da Renda de Filé',
+        imagem_fundo_cabecalho: null
+      };
+    }
     console.error('Erro ao buscar página notícias:', error);
     return null;
   }
@@ -412,7 +436,15 @@ export const getPaginaContato = async (): Promise<any | null> => {
   try {
     const response = await strapiApi.get<StrapiSingleResponse<any>>('/pagina-contato?populate=*');
     return response.data.data;
-  } catch (error) {
+  } catch (error: any) {
+    if (error.response?.status === 404) {
+      // Página não existe ainda no Strapi, retorna dados padrão
+      return {
+        titulo: 'Entre em Contato',
+        subtitulo: 'Fale conosco e saiba mais sobre a Renda de Filé',
+        imagem_fundo_cabecalho: null
+      };
+    }
     console.error('Erro ao buscar página contato:', error);
     return null;
   }

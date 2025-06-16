@@ -1,6 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { getPaginaContato } from '@/lib/strapi';
+import PageHeader from '@/components/PageHeader';
 
 export default function ContatoPage() {
   const [formData, setFormData] = useState({
@@ -12,6 +14,20 @@ export default function ContatoPage() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [paginaContato, setPaginaContato] = useState<any>(null);
+
+  useEffect(() => {
+    const carregarPagina = async () => {
+      try {
+        const pagina = await getPaginaContato();
+        setPaginaContato(pagina);
+      } catch (error) {
+        console.error('Erro ao carregar página de contato:', error);
+      }
+    };
+
+    carregarPagina();
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -45,18 +61,12 @@ export default function ContatoPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-amber-50 to-orange-100 py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-              Entre em Contato
-            </h1>
-            <p className="text-xl text-gray-600">
-              Estamos aqui para ajudar e responder suas dúvidas sobre a Renda de Filé
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHeader
+        title={paginaContato?.titulo || paginaContato?.attributes?.titulo || 'Entre em Contato'}
+        subtitle={paginaContato?.subtitulo || paginaContato?.attributes?.subtitulo || 'Estamos aqui para ajudar e responder suas dúvidas sobre a Renda de Filé'}
+        backgroundImage={paginaContato?.imagem_fundo_cabecalho || paginaContato?.attributes?.imagem_fundo_cabecalho}
+        backgroundPosition="center top"
+      />
 
       {/* Formulário e Informações */}
       <section className="py-16">

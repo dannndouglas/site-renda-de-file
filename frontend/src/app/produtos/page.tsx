@@ -1,32 +1,43 @@
 'use client';
 
-import { getProdutos } from '@/lib/strapi';
+import { getProdutos, getPaginaProdutos } from '@/lib/strapi';
 import { convertRichTextToPlainText, getStrapiImageUrl } from '@/lib/strapi';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import PageHeader from '@/components/PageHeader';
 
 export default function ProdutosPage() {
   const [produtos, setProdutos] = useState<any[]>([]);
   const [produtosFiltrados, setProdutosFiltrados] = useState<any[]>([]);
+  const [paginaProdutos, setPaginaProdutos] = useState<any>(null);
   const [filtroCategoria, setFiltroCategoria] = useState('Todos');
   const [filtroDisponibilidade, setFiltroDisponibilidade] = useState('Todos');
   const [ordenacao, setOrdenacao] = useState('nome');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const carregarProdutos = async () => {
+    const carregarDados = async () => {
       try {
-        const produtosData = await getProdutos();
+        const [produtosData, paginaData] = await Promise.all([
+          getProdutos(),
+          getPaginaProdutos()
+        ]);
         setProdutos(produtosData);
         setProdutosFiltrados(produtosData);
+        // Dados padrão quando a página não existe no Strapi
+        setPaginaProdutos(paginaData || {
+          titulo: 'Nossos Produtos',
+          subtitulo: 'Descubra a beleza e qualidade dos produtos artesanais em Renda de Filé',
+          imagem_fundo_cabecalho: null
+        });
       } catch (error) {
-        console.error('Erro ao carregar produtos:', error);
+        console.error('Erro ao carregar dados:', error);
       } finally {
         setLoading(false);
       }
     };
 
-    carregarProdutos();
+    carregarDados();
   }, []);
 
   useEffect(() => {
@@ -89,18 +100,12 @@ export default function ProdutosPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-amber-50 to-orange-100 py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-              Nossos Produtos
-            </h1>
-            <p className="text-xl text-gray-600">
-              Descubra a beleza e qualidade dos produtos artesanais em Renda de Filé
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHeader
+        title={paginaProdutos?.titulo || paginaProdutos?.attributes?.titulo || 'Nossos Produtos'}
+        subtitle={paginaProdutos?.subtitulo || paginaProdutos?.attributes?.subtitulo || 'Descubra a beleza e qualidade dos produtos artesanais em Renda de Filé'}
+        backgroundImage={paginaProdutos?.imagem_fundo_cabecalho || paginaProdutos?.attributes?.imagem_fundo_cabecalho}
+        backgroundPosition="center top"
+      />
 
       {/* Lista de Produtos */}
       <section className="py-16">
