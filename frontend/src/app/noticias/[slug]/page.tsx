@@ -82,6 +82,31 @@ export default async function NoticiaDetalhePage({ params }: Props) {
         </section>
       )}
 
+      {/* Vídeo */}
+      {(noticia.video || noticia.attributes?.video) && (
+        <section className="py-8">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+                Vídeo
+              </h2>
+              <div className="relative rounded-lg overflow-hidden shadow-lg bg-black">
+                <video
+                  controls
+                  className="w-full h-auto"
+                >
+                  <source
+                    src={getStrapiImageUrl(noticia.video || noticia.attributes?.video)}
+                    type="video/mp4"
+                  />
+                  Seu navegador não suporta vídeos.
+                </video>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Conteúdo */}
       <section className="py-8">
         <div className="container mx-auto px-4">

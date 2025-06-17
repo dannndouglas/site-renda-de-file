@@ -38,14 +38,7 @@
         "images"
       ]
     },
-    "video_hero": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "videos"
-      ]
-    },
+
     "secao_sobre": {
       "type": "component",
       "component": "secoes.secao-sobre",

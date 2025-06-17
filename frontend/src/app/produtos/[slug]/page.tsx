@@ -61,10 +61,31 @@ export default async function ProdutoDetalhePage({ params }: Props) {
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               {/* Galeria de Imagens */}
-              <ProductImageGallery
-                images={produto.fotos_produto || produto.attributes?.fotos_produto || []}
-                productName={produto.nome || produto.attributes?.nome || ''}
-              />
+              <div className="space-y-6">
+                <ProductImageGallery
+                  images={produto.fotos_produto || produto.attributes?.fotos_produto || []}
+                  productName={produto.nome || produto.attributes?.nome || ''}
+                />
+
+                {/* Vídeo Demonstrativo */}
+                {(produto.video_demonstrativo || produto.attributes?.video_demonstrativo) && (
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-3">Vídeo Demonstrativo</h3>
+                    <div className="relative rounded-lg overflow-hidden shadow-lg bg-black">
+                      <video
+                        controls
+                        className="w-full h-auto"
+                      >
+                        <source
+                          src={getStrapiImageUrl(produto.video_demonstrativo || produto.attributes?.video_demonstrativo)}
+                          type="video/mp4"
+                        />
+                        Seu navegador não suporta vídeos.
+                      </video>
+                    </div>
+                  </div>
+                )}
+              </div>
 
               {/* Informações do Produto */}
               <div className="space-y-6">

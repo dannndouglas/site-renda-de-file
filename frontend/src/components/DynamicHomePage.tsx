@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { getAssociacoes, getProdutos, getNoticiasEventos, convertRichTextToPlainText, getStrapiImageUrl, getPaginaInicial } from '@/lib/strapi';
+import GaleriaDestaque from './GaleriaDestaque';
 
 export default function DynamicHomePage() {
   const [associacoes, setAssociacoes] = useState<any[]>([]);
@@ -268,6 +269,92 @@ export default function DynamicHomePage() {
           </div>
         </div>
       </section>
+
+      {/* Seção de Vídeo Institucional */}
+      {(paginaInicial?.video_institucional || paginaInicial?.attributes?.video_institucional) && (
+        <section className="py-20 bg-gray-50 relative overflow-hidden">
+          {/* Elementos decorativos de fundo */}
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute top-20 left-10 w-72 h-72 bg-amber-300 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-20 right-10 w-96 h-96 bg-orange-300 rounded-full blur-3xl"></div>
+          </div>
+
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="max-w-6xl mx-auto">
+              <div className="text-center mb-16">
+                <div className="inline-block">
+                  <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4 relative">
+                    Conheça Nossa História
+                    <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full"></div>
+                  </h2>
+                </div>
+                <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed mt-6">
+                  Assista ao vídeo e descubra a tradição da Renda de Filé
+                </p>
+              </div>
+
+              <div className="max-w-4xl mx-auto">
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-black">
+                  <video
+                    controls
+                    className="w-full h-auto"
+                    poster={getStrapiImageUrl(paginaInicial?.attributes?.imagem_secao_sobre || paginaInicial?.imagem_secao_sobre)}
+                  >
+                    <source
+                      src={getStrapiImageUrl(paginaInicial?.video_institucional || paginaInicial?.attributes?.video_institucional)}
+                      type="video/mp4"
+                    />
+                    Seu navegador não suporta vídeos.
+                  </video>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Galeria Destaque */}
+      {(paginaInicial?.galeria_destaque || paginaInicial?.attributes?.galeria_destaque) && (
+        <section className="py-20 bg-white relative overflow-hidden">
+          {/* Elementos decorativos de fundo */}
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute top-20 right-10 w-72 h-72 bg-amber-300 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-20 left-10 w-96 h-96 bg-orange-300 rounded-full blur-3xl"></div>
+          </div>
+
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="max-w-6xl mx-auto">
+              <div className="text-center mb-16">
+                <div className="inline-block">
+                  <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4 relative">
+                    Galeria em Destaque
+                    <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full"></div>
+                  </h2>
+                </div>
+                <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed mt-6">
+                  Conheça a beleza e qualidade dos nossos produtos artesanais
+                </p>
+              </div>
+
+              <GaleriaDestaque
+                imagens={paginaInicial?.galeria_destaque || paginaInicial?.attributes?.galeria_destaque || []}
+              />
+
+              <div className="text-center mt-12">
+                <Link
+                  href="/produtos"
+                  className="group inline-flex items-center bg-gradient-to-r from-amber-500 to-orange-600 text-white px-8 py-4 rounded-full font-semibold hover:from-amber-600 hover:to-orange-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+                >
+                  Ver Todos os Produtos
+                  <svg className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Seção de Estatísticas */}
       <section

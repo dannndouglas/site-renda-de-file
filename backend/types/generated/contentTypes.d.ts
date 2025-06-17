@@ -606,7 +606,6 @@ export interface ApiPaginaInicialPaginaInicial extends Struct.SingleTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    video_hero: Schema.Attribute.Media<'videos'>;
     video_institucional: Schema.Attribute.Media<'videos'>;
   };
 }

@@ -88,6 +88,31 @@ export default async function AssociacaoDetalhePage({ params }: Props) {
         </div>
       </section>
 
+      {/* Vídeo Institucional */}
+      {(associacao.video_institucional || associacao.attributes?.video_institucional) && (
+        <section className="py-16 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-8">
+                Conheça Nossa Associação
+              </h2>
+              <div className="relative rounded-lg overflow-hidden shadow-lg bg-black">
+                <video
+                  controls
+                  className="w-full h-auto"
+                >
+                  <source
+                    src={getStrapiImageUrl(associacao.video_institucional || associacao.attributes?.video_institucional)}
+                    type="video/mp4"
+                  />
+                  Seu navegador não suporta vídeos.
+                </video>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Contatos */}
       {associacao.attributes.contatos && (
         <section className="py-16 bg-gray-50">

@@ -180,9 +180,7 @@ export interface PaginaInicial {
     imagem_fundo_hero?: {
       data?: StrapiMedia;
     };
-    video_hero?: {
-      data?: StrapiMedia;
-    };
+
     secao_sobre?: {
       titulo: string;
       conteudo: any;
@@ -466,7 +464,7 @@ export const getPaginaInicial = async (): Promise<PaginaInicial | null> => {
         subtitulo: item.subtitulo || item.attributes?.subtitulo || 'Preservando a tradição artesanal',
         imagem_secao_sobre: item.imagem_secao_sobre || item.attributes?.imagem_secao_sobre,
         imagem_fundo_hero: item.imagem_fundo_hero || item.attributes?.imagem_fundo_hero,
-        video_hero: item.video_hero || item.attributes?.video_hero,
+
         secao_sobre: item.secao_sobre || item.attributes?.secao_sobre,
         estatisticas: item.estatisticas || item.attributes?.estatisticas,
         galeria_destaque: item.galeria_destaque || item.attributes?.galeria_destaque,
