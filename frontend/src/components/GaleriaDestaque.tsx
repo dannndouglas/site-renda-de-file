@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getStrapiImageUrl } from '@/lib/strapi';
 
@@ -35,7 +36,7 @@ export default function GaleriaDestaque({ imagens }: GaleriaDestaqueProps) {
     }
   };
 
-  // Navegação por teclado
+  // Navegação por teclado e controle do body scroll
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (imagemSelecionada !== null) {
@@ -46,8 +47,14 @@ export default function GaleriaDestaque({ imagens }: GaleriaDestaqueProps) {
     };
 
     if (imagemSelecionada !== null) {
+      // Prevenir scroll do body quando modal está aberto
+      document.body.style.overflow = 'hidden';
       document.addEventListener('keydown', handleKeyDown);
-      return () => document.removeEventListener('keydown', handleKeyDown);
+
+      return () => {
+        document.body.style.overflow = 'unset';
+        document.removeEventListener('keydown', handleKeyDown);
+      };
     }
   }, [imagemSelecionada]);
 
@@ -88,23 +95,34 @@ export default function GaleriaDestaque({ imagens }: GaleriaDestaqueProps) {
         ))}
       </div>
 
-      {/* Modal de Visualização */}
-      <AnimatePresence>
-        {imagemSelecionada !== null && (
-          <motion.div
-            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={fecharModal}
-          >
+      {/* Modal de Visualização usando Portal */}
+      {typeof window !== 'undefined' && createPortal(
+        <AnimatePresence>
+          {imagemSelecionada !== null && (
             <motion.div
-              className="relative max-w-4xl max-h-full"
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
+              className="fixed inset-0 bg-black/90 flex items-center justify-center p-4"
+              style={{
+                zIndex: 999999,
+                isolation: 'isolate',
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0
+              }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={fecharModal}
             >
+              <motion.div
+                className="relative max-w-4xl max-h-full"
+                style={{ zIndex: 1000000 }}
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.8, opacity: 0 }}
+                onClick={(e) => e.stopPropagation()}
+              >
               <img
                 src={getStrapiImageUrl(imagens[imagemSelecionada])}
                 alt={imagens[imagemSelecionada].alternativeText || `Imagem ${imagemSelecionada + 1}`}
@@ -150,7 +168,9 @@ export default function GaleriaDestaque({ imagens }: GaleriaDestaqueProps) {
             </motion.div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence>,
+      document.body
+    )}
     </>
   );
 }
