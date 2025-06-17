@@ -577,7 +577,13 @@ export interface ApiPaginaInicialPaginaInicial extends Struct.SingleTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     estatisticas: Schema.Attribute.Component<'secoes.estatisticas', false>;
-    galeria_destaque: Schema.Attribute.Media<'images', true>;
+    galeria_destaque: Schema.Attribute.Media<'images', true> &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 15;
+        },
+        number
+      >;
     imagem_fundo_hero: Schema.Attribute.Media<'images'>;
     imagem_secao_sobre: Schema.Attribute.Media<'images'>;
     link_chamada_acao: Schema.Attribute.String &

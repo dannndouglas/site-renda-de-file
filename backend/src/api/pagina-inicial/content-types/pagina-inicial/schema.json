@@ -55,7 +55,8 @@
       "required": false,
       "allowedTypes": [
         "images"
-      ]
+      ],
+      "max": 15
     },
     "video_institucional": {
       "type": "media",

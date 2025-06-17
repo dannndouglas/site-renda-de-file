@@ -7,7 +7,34 @@ export const strapiApi = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+  timeout: 10000, // 10 segundos de timeout
 });
+
+// Interceptor para debug
+strapiApi.interceptors.request.use(
+  (config) => {
+    console.log('🚀 Fazendo requisição para:', config.baseURL + config.url);
+    return config;
+  },
+  (error) => {
+    console.error('❌ Erro na requisição:', error);
+    return Promise.reject(error);
+  }
+);
+
+strapiApi.interceptors.response.use(
+  (response) => {
+    console.log('✅ Resposta recebida:', response.status, response.config.url);
+    return response;
+  },
+  (error) => {
+    console.error('❌ Erro na resposta:', error.message, error.config?.url);
+    if (error.code === 'ECONNREFUSED') {
+      console.error('🔌 Conexão recusada - verifique se o backend está rodando');
+    }
+    return Promise.reject(error);
+  }
+);
 
 // Tipos para os dados do Strapi
 export interface StrapiResponse<T> {
@@ -458,8 +485,17 @@ export const getPaginaContato = async (): Promise<any | null> => {
 
 export const getPaginaInicial = async (): Promise<PaginaInicial | null> => {
   try {
-    console.log('Fazendo requisição para:', `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/pagina-inicial?populate=*`);
-    const response = await strapiApi.get<StrapiSingleResponse<any>>('/pagina-inicial?populate=*');
+    // Tentar primeiro com populate simples
+    console.log('Fazendo requisição para página inicial...');
+    let response;
+
+    try {
+      response = await strapiApi.get<StrapiSingleResponse<any>>('/pagina-inicial?populate=*');
+    } catch (error) {
+      console.log('Erro com populate=*, tentando sem populate:', error);
+      response = await strapiApi.get<StrapiSingleResponse<any>>('/pagina-inicial');
+    }
+
     console.log('Resposta da API:', response.data);
     const item = response.data.data;
     if (!item) return null;

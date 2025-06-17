@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getStrapiImageUrl } from '@/lib/strapi';
@@ -11,8 +11,30 @@ interface GaleriaDestaqueProps {
 
 export default function GaleriaDestaque({ imagens }: GaleriaDestaqueProps) {
   const [imagemSelecionada, setImagemSelecionada] = useState<number | null>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [itemsPerView, setItemsPerView] = useState(3);
+  const carouselRef = useRef<HTMLDivElement>(null);
 
-  if (!imagens || imagens.length === 0) {
+  // Limitar a 15 imagens conforme solicitado
+  const imagensLimitadas = imagens?.slice(0, 15) || [];
+
+  useEffect(() => {
+    const updateItemsPerView = () => {
+      if (window.innerWidth >= 1024) {
+        setItemsPerView(3);
+      } else if (window.innerWidth >= 768) {
+        setItemsPerView(2);
+      } else {
+        setItemsPerView(1);
+      }
+    };
+
+    updateItemsPerView();
+    window.addEventListener('resize', updateItemsPerView);
+    return () => window.removeEventListener('resize', updateItemsPerView);
+  }, []);
+
+  if (!imagensLimitadas || imagensLimitadas.length === 0) {
     return null;
   }
 
@@ -26,15 +48,27 @@ export default function GaleriaDestaque({ imagens }: GaleriaDestaqueProps) {
 
   const proximaImagem = () => {
     if (imagemSelecionada !== null) {
-      setImagemSelecionada((imagemSelecionada + 1) % imagens.length);
+      setImagemSelecionada((imagemSelecionada + 1) % imagensLimitadas.length);
     }
   };
 
   const imagemAnterior = () => {
     if (imagemSelecionada !== null) {
-      setImagemSelecionada(imagemSelecionada === 0 ? imagens.length - 1 : imagemSelecionada - 1);
+      setImagemSelecionada(imagemSelecionada === 0 ? imagensLimitadas.length - 1 : imagemSelecionada - 1);
     }
   };
+
+  const nextSlide = () => {
+    const maxIndex = Math.max(0, imagensLimitadas.length - itemsPerView);
+    setCurrentIndex(prev => Math.min(prev + 1, maxIndex));
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex(prev => Math.max(prev - 1, 0));
+  };
+
+  const canGoNext = currentIndex < imagensLimitadas.length - itemsPerView;
+  const canGoPrev = currentIndex > 0;
 
   // Navegação por teclado e controle do body scroll
   useEffect(() => {
@@ -60,39 +94,84 @@ export default function GaleriaDestaque({ imagens }: GaleriaDestaqueProps) {
 
   return (
     <>
-      {/* Grid de Imagens */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {imagens.map((imagem: any, index: number) => (
-          <motion.div
-            key={index}
-            className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 cursor-pointer"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 * index }}
-            onClick={() => abrirModal(index)}
+      {/* Carrossel de Imagens */}
+      <div className="relative">
+        {/* Container do carrossel */}
+        <div className="overflow-hidden" ref={carouselRef}>
+          <div
+            className="flex transition-transform duration-500 ease-in-out"
+            style={{
+              transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)`
+            }}
           >
-            <div className="aspect-square bg-gradient-to-br from-amber-100 to-orange-200 overflow-hidden p-2">
-              <img
-                src={getStrapiImageUrl(imagem)}
-                alt={imagem.alternativeText || imagem.attributes?.alternativeText || `Imagem em destaque ${index + 1}`}
-                className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
-              />
-            </div>
-            
-            {/* Overlay com efeito hover */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <div className="absolute bottom-4 left-4 right-4">
-                <div className="flex items-center justify-center">
-                  <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
+            {imagensLimitadas.map((imagem: any, index: number) => (
+              <motion.div
+                key={index}
+                className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 cursor-pointer px-4"
+                style={{
+                  width: `${100 / itemsPerView}%`,
+                  flexShrink: 0
+                }}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 * index }}
+                onClick={() => abrirModal(index)}
+              >
+                <div className="aspect-square bg-gradient-to-br from-amber-100 to-orange-200 overflow-hidden p-2">
+                  <img
+                    src={getStrapiImageUrl(imagem)}
+                    alt={imagem.alternativeText || imagem.attributes?.alternativeText || `Imagem em destaque ${index + 1}`}
+                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+
+                {/* Overlay com efeito hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <div className="flex items-center justify-center">
+                      <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </motion.div>
-        ))}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Setas de navegação */}
+        {canGoPrev && (
+          <button
+            onClick={prevSlide}
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 z-10 group"
+          >
+            <svg className="w-6 h-6 text-gray-600 group-hover:text-amber-600 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+        )}
+
+        {canGoNext && (
+          <button
+            onClick={nextSlide}
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 z-10 group"
+          >
+            <svg className="w-6 h-6 text-gray-600 group-hover:text-amber-600 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        )}
+
+        {/* Efeito de esmaecimento nas bordas - só aparece quando há itens para navegar */}
+        {canGoPrev && (
+          <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-white to-transparent pointer-events-none z-[5]"></div>
+        )}
+        {canGoNext && (
+          <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-white to-transparent pointer-events-none z-[5]"></div>
+        )}
       </div>
 
       {/* Modal de Visualização usando Portal */}
@@ -126,8 +205,8 @@ export default function GaleriaDestaque({ imagens }: GaleriaDestaqueProps) {
                 {/* Container da imagem com tamanho fixo */}
                 <div className="w-full h-full flex items-center justify-center">
                   <img
-                    src={getStrapiImageUrl(imagens[imagemSelecionada])}
-                    alt={imagens[imagemSelecionada].alternativeText || `Imagem ${imagemSelecionada + 1}`}
+                    src={getStrapiImageUrl(imagensLimitadas[imagemSelecionada])}
+                    alt={imagensLimitadas[imagemSelecionada].alternativeText || `Imagem ${imagemSelecionada + 1}`}
                     className="w-full h-full object-contain rounded-lg"
                     style={{
                       minWidth: '100%',
@@ -148,7 +227,7 @@ export default function GaleriaDestaque({ imagens }: GaleriaDestaqueProps) {
                 </button>
 
                 {/* Navegação */}
-                {imagens.length > 1 && (
+                {imagensLimitadas.length > 1 && (
                   <>
                     <button
                       onClick={imagemAnterior}
@@ -171,7 +250,7 @@ export default function GaleriaDestaque({ imagens }: GaleriaDestaqueProps) {
 
                 {/* Contador no modal */}
                 <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full text-sm z-10 backdrop-blur-sm">
-                  {imagemSelecionada + 1} / {imagens.length}
+                  {imagemSelecionada + 1} / {imagensLimitadas.length}
                 </div>
               </motion.div>
             </motion.div>

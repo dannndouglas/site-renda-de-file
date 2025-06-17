@@ -6,6 +6,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { getAssociacoes, getProdutos, getNoticiasEventos, convertRichTextToPlainText, getStrapiImageUrl, getPaginaInicial } from '@/lib/strapi';
 import GaleriaDestaque from './GaleriaDestaque';
+import CarrosselAssociacoes from './CarrosselAssociacoes';
 
 export default function DynamicHomePage() {
   const [associacoes, setAssociacoes] = useState<any[]>([]);
@@ -41,7 +42,7 @@ export default function DynamicHomePage() {
           paginaInicial: paginaInicialData
         });
 
-        setAssociacoes(associacoesData.slice(0, 3));
+        setAssociacoes(associacoesData); // Usar todas as associações para o carrossel
         setNoticias(noticiasData.slice(0, 3));
         setPaginaInicial(paginaInicialData);
       } catch (error) {
@@ -430,53 +431,8 @@ export default function DynamicHomePage() {
             </div>
 
             {associacoes.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                {associacoes.map((associacao, index) => (
-                  <motion.div
-                    key={associacao.id}
-                    className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border border-gray-100"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.1 * index }}
-                  >
-                    <div className="h-48 bg-gradient-to-br from-amber-100 to-orange-200 flex items-center justify-center p-4 relative overflow-hidden">
-                      {(associacao.logo || associacao.attributes?.logo) ? (
-                        <img
-                          src={getStrapiImageUrl(associacao.logo || associacao.attributes?.logo)}
-                          alt={`Logo da ${associacao.nome || associacao.attributes?.nome}`}
-                          className="max-h-32 max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
-                        />
-                      ) : (
-                        <div className="text-center transform group-hover:scale-110 transition-transform duration-300">
-                          <div className="w-20 h-20 bg-gradient-to-br from-amber-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg">
-                            <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                            </svg>
-                          </div>
-                          <p className="text-amber-700 font-semibold text-lg">Associação</p>
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-amber-600 transition-colors duration-300">
-                        {associacao.nome || associacao.attributes?.nome}
-                      </h3>
-                      <p className="text-gray-600 mb-4 line-clamp-3 leading-relaxed">
-                        {convertRichTextToPlainText(associacao.historia || associacao.attributes?.historia).substring(0, 120)}...
-                      </p>
-                      <Link
-                        href={`/associacoes/${associacao.slug || associacao.attributes?.slug}`}
-                        className="group inline-flex items-center text-amber-600 font-semibold hover:text-amber-700 transition-colors duration-300"
-                      >
-                        Saiba mais
-                        <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </Link>
-                    </div>
-                  </motion.div>
-                ))}
+              <div className="mb-16">
+                <CarrosselAssociacoes associacoes={associacoes} />
               </div>
             ) : (
               <div className="text-center py-12">
