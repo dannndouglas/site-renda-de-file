@@ -100,7 +100,7 @@ export default function GaleriaDestaque({ imagens }: GaleriaDestaqueProps) {
         <AnimatePresence>
           {imagemSelecionada !== null && (
             <motion.div
-              className="fixed inset-0 bg-black/90 flex items-center justify-center p-4"
+              className="fixed inset-0 bg-black/90 flex items-center justify-center p-8"
               style={{
                 zIndex: 999999,
                 isolation: 'isolate',
@@ -116,57 +116,65 @@ export default function GaleriaDestaque({ imagens }: GaleriaDestaqueProps) {
               onClick={fecharModal}
             >
               <motion.div
-                className="relative max-w-4xl max-h-full"
+                className="relative w-full h-full max-w-6xl max-h-[90vh] bg-transparent"
                 style={{ zIndex: 1000000 }}
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.8, opacity: 0 }}
                 onClick={(e) => e.stopPropagation()}
               >
-              <img
-                src={getStrapiImageUrl(imagens[imagemSelecionada])}
-                alt={imagens[imagemSelecionada].alternativeText || `Imagem ${imagemSelecionada + 1}`}
-                className="max-w-full max-h-full object-contain rounded-lg"
-              />
+                {/* Container da imagem com tamanho fixo */}
+                <div className="w-full h-full flex items-center justify-center">
+                  <img
+                    src={getStrapiImageUrl(imagens[imagemSelecionada])}
+                    alt={imagens[imagemSelecionada].alternativeText || `Imagem ${imagemSelecionada + 1}`}
+                    className="w-full h-full object-contain rounded-lg"
+                    style={{
+                      minWidth: '100%',
+                      minHeight: '100%',
+                      objectFit: 'contain'
+                    }}
+                  />
+                </div>
 
-              {/* Botão Fechar */}
-              <button
-                onClick={fecharModal}
-                className="absolute top-4 right-4 w-10 h-10 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-colors"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
+                {/* Botão fechar */}
+                <button
+                  onClick={fecharModal}
+                  className="absolute top-4 right-4 w-12 h-12 bg-black/70 hover:bg-black/90 text-white rounded-full flex items-center justify-center transition-colors z-10 backdrop-blur-sm"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
 
-              {/* Navegação */}
-              {imagens.length > 1 && (
-                <>
-                  <button
-                    onClick={imagemAnterior}
-                    className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-colors"
-                  >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                    </svg>
-                  </button>
-                  <button
-                    onClick={proximaImagem}
-                    className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-colors"
-                  >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </button>
-                </>
-              )}
+                {/* Navegação */}
+                {imagens.length > 1 && (
+                  <>
+                    <button
+                      onClick={imagemAnterior}
+                      className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-black/70 hover:bg-black/90 text-white rounded-full flex items-center justify-center transition-colors z-10 backdrop-blur-sm"
+                    >
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      </svg>
+                    </button>
+                    <button
+                      onClick={proximaImagem}
+                      className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-black/70 hover:bg-black/90 text-white rounded-full flex items-center justify-center transition-colors z-10 backdrop-blur-sm"
+                    >
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  </>
+                )}
 
-              {/* Contador */}
-              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/50 text-white px-4 py-2 rounded-full text-sm">
-                {imagemSelecionada + 1} de {imagens.length}
-              </div>
+                {/* Contador no modal */}
+                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full text-sm z-10 backdrop-blur-sm">
+                  {imagemSelecionada + 1} / {imagens.length}
+                </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
         )}
       </AnimatePresence>,
       document.body
