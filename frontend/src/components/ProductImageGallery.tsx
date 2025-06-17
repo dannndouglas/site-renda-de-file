@@ -142,12 +142,11 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                 <img
                   src={getStrapiImageUrl(images[imagemSelecionada])}
                   alt={`${productName} - Imagem ${imagemSelecionada + 1}`}
-                  className="max-w-full max-h-full object-contain rounded-lg"
+                  className="w-full h-full object-contain rounded-lg"
                   style={{
-                    width: 'auto',
-                    height: 'auto',
-                    maxWidth: '100%',
-                    maxHeight: '100%'
+                    minWidth: '100%',
+                    minHeight: '100%',
+                    objectFit: 'contain'
                   }}
                 />
               </div>
