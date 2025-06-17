@@ -66,6 +66,9 @@ export interface Associacao {
     logo?: {
       data?: StrapiMedia;
     };
+    imagem_previa?: {
+      data?: StrapiMedia;
+    };
     galeria_fotos?: {
       data?: StrapiMedia[];
     };
@@ -80,6 +83,9 @@ export interface Associacao {
   slug?: string;
   contatos?: Contatos;
   logo?: {
+    data?: StrapiMedia;
+  };
+  imagem_previa?: {
     data?: StrapiMedia;
   };
   galeria_fotos?: {
@@ -272,6 +278,7 @@ export const getAssociacoes = async (): Promise<Associacao[]> => {
         slug: item.slug,
         contatos: item.contatos,
         logo: item.logo,
+        imagem_previa: item.imagem_previa,
         galeria_fotos: item.galeria_fotos,
         createdAt: item.createdAt,
         updatedAt: item.updatedAt,
@@ -300,6 +307,7 @@ export const getAssociacaoBySlug = async (slug: string): Promise<Associacao | nu
         slug: item.slug,
         contatos: item.contatos,
         logo: item.logo,
+        imagem_previa: item.imagem_previa,
         galeria_fotos: item.galeria_fotos,
         createdAt: item.createdAt,
         updatedAt: item.updatedAt,

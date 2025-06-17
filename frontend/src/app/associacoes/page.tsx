@@ -33,22 +33,32 @@ export default async function AssociacoesPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {associacoes.map((associacao) => (
                   <div key={associacao.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-200">
-                    {/* Logo da Associação */}
-                    <div className="h-48 bg-gradient-to-br from-amber-100 to-orange-200 flex items-center justify-center p-4">
-                      {(associacao.logo || associacao.attributes?.logo) ? (
+                    {/* Imagem de Prévia da Associação */}
+                    <div className="h-48 bg-gradient-to-br from-amber-100 to-orange-200 overflow-hidden">
+                      {(associacao.imagem_previa || associacao.attributes?.imagem_previa) ? (
                         <img
-                          src={getStrapiImageUrl(associacao.logo || associacao.attributes?.logo)}
-                          alt={associacao.nome || associacao.attributes?.nome || 'Logo da associação'}
-                          className="max-h-full max-w-full object-contain"
+                          src={getStrapiImageUrl(associacao.imagem_previa || associacao.attributes?.imagem_previa)}
+                          alt={associacao.nome || associacao.attributes?.nome || 'Imagem da associação'}
+                          className="w-full h-full object-cover"
                         />
+                      ) : (associacao.logo || associacao.attributes?.logo) ? (
+                        <div className="w-full h-full flex items-center justify-center p-4">
+                          <img
+                            src={getStrapiImageUrl(associacao.logo || associacao.attributes?.logo)}
+                            alt={associacao.nome || associacao.attributes?.nome || 'Logo da associação'}
+                            className="max-h-full max-w-full object-contain"
+                          />
+                        </div>
                       ) : (
-                        <div className="text-center">
-                          <div className="w-16 h-16 bg-amber-600 rounded-full flex items-center justify-center mx-auto mb-2">
-                            <span className="text-white font-bold text-xl">
-                              {(associacao.nome || associacao.attributes?.nome || 'A').charAt(0)}
-                            </span>
+                        <div className="w-full h-full flex items-center justify-center">
+                          <div className="text-center">
+                            <div className="w-16 h-16 bg-amber-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                              <span className="text-white font-bold text-xl">
+                                {(associacao.nome || associacao.attributes?.nome || 'A').charAt(0)}
+                              </span>
+                            </div>
+                            <p className="text-gray-600 text-sm">{associacao.nome || associacao.attributes?.nome}</p>
                           </div>
-                          <p className="text-gray-600 text-sm">{associacao.nome || associacao.attributes?.nome}</p>
                         </div>
                       )}
                     </div>

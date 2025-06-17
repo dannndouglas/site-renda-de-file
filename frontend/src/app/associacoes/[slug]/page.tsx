@@ -53,16 +53,18 @@ export default async function AssociacaoDetalhePage({ params }: Props) {
                 </div>
               </div>
               <div className="flex justify-center">
-                {associacao.attributes.logo?.data ? (
-                  <img 
-                    src={`http://localhost:1337${associacao.attributes.logo.data.attributes.url}`}
-                    alt={associacao.attributes.logo.data.attributes.alternativeText || associacao.attributes.nome}
-                    className="max-w-xs max-h-64 object-contain"
-                  />
+                {(associacao.logo || associacao.attributes?.logo) ? (
+                  <div className="w-48 h-48 rounded-full overflow-hidden">
+                    <img
+                      src={getStrapiImageUrl(associacao.logo || associacao.attributes?.logo)}
+                      alt={associacao.attributes?.nome || associacao.nome || 'Logo da associação'}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                 ) : (
                   <div className="w-48 h-48 bg-amber-600 rounded-full flex items-center justify-center">
                     <span className="text-white font-bold text-6xl">
-                      {associacao.attributes.nome.charAt(0)}
+                      {(associacao.attributes?.nome || associacao.nome || 'A').charAt(0)}
                     </span>
                   </div>
                 )}

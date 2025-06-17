@@ -391,6 +391,7 @@ export interface ApiAssociacaoAssociacao extends Struct.CollectionTypeSchema {
     endereco_completo: Schema.Attribute.String & Schema.Attribute.Required;
     galeria_fotos: Schema.Attribute.Media<'images', true>;
     historia: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    imagem_previa: Schema.Attribute.Media<'images'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
