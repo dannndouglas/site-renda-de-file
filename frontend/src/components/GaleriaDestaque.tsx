@@ -64,11 +64,11 @@ export default function GaleriaDestaque({ imagens }: GaleriaDestaqueProps) {
             transition={{ duration: 0.6, delay: 0.1 * index }}
             onClick={() => abrirModal(index)}
           >
-            <div className="aspect-square bg-gradient-to-br from-amber-100 to-orange-200 overflow-hidden">
+            <div className="aspect-square bg-gradient-to-br from-amber-100 to-orange-200 overflow-hidden p-2">
               <img
                 src={getStrapiImageUrl(imagem)}
                 alt={imagem.alternativeText || imagem.attributes?.alternativeText || `Imagem em destaque ${index + 1}`}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
               />
             </div>
             
