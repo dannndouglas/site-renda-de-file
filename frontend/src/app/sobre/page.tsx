@@ -2,6 +2,36 @@ import { getPaginaSobre, getStrapiImageUrl, convertRichTextToPlainText } from '@
 import PageHeader from '@/components/PageHeader';
 import ImageGallery from '@/components/ImageGallery';
 
+// Função para converter posições em português para CSS
+function converterPosicaoParaCSS(posicao: string): string {
+  const mapeamento: { [key: string]: string } = {
+    'Centro': 'center center',
+    'Centro Superior': 'center top',
+    'Centro Inferior': 'center bottom',
+    'Esquerda Centro': 'left center',
+    'Direita Centro': 'right center',
+    'Esquerda Superior': 'left top',
+    'Direita Superior': 'right top',
+    'Esquerda Inferior': 'left bottom',
+    'Direita Inferior': 'right bottom'
+  };
+
+  return mapeamento[posicao] || 'center center';
+}
+
+// Função para converter opacidade em português para valor numérico
+function converterOpacidadeParaCSS(opacidade: string): number {
+  const mapeamento: { [key: string]: number } = {
+    'Sem Overlay (0%)': 0,
+    'Overlay Leve (25%)': 0.25,
+    'Overlay Médio (50%)': 0.5,
+    'Overlay Forte (75%)': 0.75,
+    'Overlay Intenso (100%)': 1
+  };
+
+  return mapeamento[opacidade] || 0;
+}
+
 export default async function SobrePage() {
   const paginaSobre = await getPaginaSobre();
 
@@ -10,8 +40,10 @@ export default async function SobrePage() {
       {/* Hero Section */}
       <PageHeader
         title={paginaSobre?.titulo_pagina || paginaSobre?.attributes?.titulo_pagina || 'Sobre a Renda de Filé'}
-        subtitle="Conheça a história e o processo de criação desta arte tradicional"
+        subtitle={paginaSobre?.subtitulo_pagina || paginaSobre?.attributes?.subtitulo_pagina || 'Conheça a história e o processo de criação desta arte tradicional'}
         backgroundImage={paginaSobre?.imagem_fundo_cabecalho || paginaSobre?.attributes?.imagem_fundo_cabecalho}
+        backgroundPosition={converterPosicaoParaCSS(paginaSobre?.posicao_imagem_fundo || paginaSobre?.attributes?.posicao_imagem_fundo || "Centro")}
+        overlayOpacity={converterOpacidadeParaCSS(paginaSobre?.opacidade_overlay || paginaSobre?.attributes?.opacidade_overlay || "Sem Overlay (0%)")}
       />
 
       {/* História */}

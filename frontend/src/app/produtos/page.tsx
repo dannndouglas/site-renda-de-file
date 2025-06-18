@@ -6,6 +6,36 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import PageHeader from '@/components/PageHeader';
 
+// Função para converter posições em português para CSS
+function converterPosicaoParaCSS(posicao: string): string {
+  const mapeamento: { [key: string]: string } = {
+    'Centro': 'center center',
+    'Centro Superior': 'center top',
+    'Centro Inferior': 'center bottom',
+    'Esquerda Centro': 'left center',
+    'Direita Centro': 'right center',
+    'Esquerda Superior': 'left top',
+    'Direita Superior': 'right top',
+    'Esquerda Inferior': 'left bottom',
+    'Direita Inferior': 'right bottom'
+  };
+
+  return mapeamento[posicao] || 'center center';
+}
+
+// Função para converter opacidade em português para valor numérico
+function converterOpacidadeParaCSS(opacidade: string): number {
+  const mapeamento: { [key: string]: number } = {
+    'Sem Overlay (0%)': 0,
+    'Overlay Leve (25%)': 0.25,
+    'Overlay Médio (50%)': 0.5,
+    'Overlay Forte (75%)': 0.75,
+    'Overlay Intenso (100%)': 1
+  };
+
+  return mapeamento[opacidade] || 0;
+}
+
 export default function ProdutosPage() {
   const [produtos, setProdutos] = useState<any[]>([]);
   const [produtosFiltrados, setProdutosFiltrados] = useState<any[]>([]);
@@ -101,10 +131,11 @@ export default function ProdutosPage() {
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <PageHeader
-        title={paginaProdutos?.titulo || paginaProdutos?.attributes?.titulo || 'Nossos Produtos'}
-        subtitle={paginaProdutos?.subtitulo || paginaProdutos?.attributes?.subtitulo || 'Descubra a beleza e qualidade dos produtos artesanais em Renda de Filé'}
+        title={paginaProdutos?.titulo_pagina || paginaProdutos?.attributes?.titulo_pagina || 'Nossos Produtos'}
+        subtitle={paginaProdutos?.subtitulo_pagina || paginaProdutos?.attributes?.subtitulo_pagina || 'Descubra a beleza e qualidade dos produtos artesanais em Renda de Filé'}
         backgroundImage={paginaProdutos?.imagem_fundo_cabecalho || paginaProdutos?.attributes?.imagem_fundo_cabecalho}
-        backgroundPosition="center top"
+        backgroundPosition={converterPosicaoParaCSS(paginaProdutos?.posicao_imagem_fundo || paginaProdutos?.attributes?.posicao_imagem_fundo || "Centro")}
+        overlayOpacity={converterOpacidadeParaCSS(paginaProdutos?.opacidade_overlay || paginaProdutos?.attributes?.opacidade_overlay || "Sem Overlay (0%)")}
       />
 
       {/* Lista de Produtos */}

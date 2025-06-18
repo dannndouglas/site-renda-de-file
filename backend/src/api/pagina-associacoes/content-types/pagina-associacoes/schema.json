@@ -45,6 +45,18 @@
       "default": "Centro",
       "required": false
     },
+    "opacidade_overlay": {
+      "type": "enumeration",
+      "enum": [
+        "Sem Overlay (0%)",
+        "Overlay Leve (25%)",
+        "Overlay Médio (50%)",
+        "Overlay Forte (75%)",
+        "Overlay Intenso (100%)"
+      ],
+      "default": "Sem Overlay (0%)",
+      "required": false
+    },
     "conteudo_introducao": {
       "type": "blocks",
       "required": false

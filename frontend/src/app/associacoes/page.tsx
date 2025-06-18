@@ -19,18 +19,34 @@ function converterPosicaoParaCSS(posicao: string): string {
   return mapeamento[posicao] || 'center center';
 }
 
+// Função para converter opacidade em português para valor numérico
+function converterOpacidadeParaCSS(opacidade: string): number {
+  const mapeamento: { [key: string]: number } = {
+    'Sem Overlay (0%)': 0,
+    'Overlay Leve (25%)': 0.25,
+    'Overlay Médio (50%)': 0.5,
+    'Overlay Forte (75%)': 0.75,
+    'Overlay Intenso (100%)': 1
+  };
+
+  return mapeamento[opacidade] || 0;
+}
+
 export default async function AssociacoesPage() {
   const [associacoes, paginaAssociacoes] = await Promise.all([
     getAssociacoes(),
     getPaginaAssociacoes()
   ]);
 
+
+
   // Dados padrão quando a página não existe no Strapi
   const dadosPagina = paginaAssociacoes || {
     titulo_pagina: 'Nossas Associações',
     subtitulo_pagina: 'Conheça as associações parceiras que preservam a tradição da Renda de Filé',
     imagem_fundo_cabecalho: null,
-    posicao_imagem_fundo: 'Centro Superior'
+    posicao_imagem_fundo: 'Centro Superior',
+    opacidade_overlay: 'Overlay Médio (50%)'
   };
 
   return (
@@ -41,6 +57,7 @@ export default async function AssociacoesPage() {
         subtitle={dadosPagina.subtitulo_pagina || dadosPagina.attributes?.subtitulo_pagina || 'Conheça as associações parceiras que preservam a tradição da Renda de Filé'}
         backgroundImage={dadosPagina.imagem_fundo_cabecalho || dadosPagina.attributes?.imagem_fundo_cabecalho}
         backgroundPosition={converterPosicaoParaCSS(dadosPagina.posicao_imagem_fundo || dadosPagina.attributes?.posicao_imagem_fundo || "Centro")}
+        overlayOpacity={converterOpacidadeParaCSS(dadosPagina.opacidade_overlay || dadosPagina.attributes?.opacidade_overlay || "Sem Overlay (0%)")}
       />
 
       {/* Lista de Associações */}

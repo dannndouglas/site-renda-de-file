@@ -514,6 +514,16 @@ export interface ApiPaginaAssociacoesPaginaAssociacoes
       'api::pagina-associacoes.pagina-associacoes'
     > &
       Schema.Attribute.Private;
+    opacidade_overlay: Schema.Attribute.Enumeration<
+      [
+        'Sem Overlay (0%)',
+        'Overlay Leve (25%)',
+        'Overlay M\u00E9dio (50%)',
+        'Overlay Forte (75%)',
+        'Overlay Intenso (100%)',
+      ]
+    > &
+      Schema.Attribute.DefaultTo<'Sem Overlay (0%)'>;
     posicao_imagem_fundo: Schema.Attribute.Enumeration<
       [
         'Centro',
@@ -563,6 +573,30 @@ export interface ApiPaginaContatoPaginaContato extends Struct.SingleTypeSchema {
       'api::pagina-contato.pagina-contato'
     > &
       Schema.Attribute.Private;
+    opacidade_overlay: Schema.Attribute.Enumeration<
+      [
+        'Sem Overlay (0%)',
+        'Overlay Leve (25%)',
+        'Overlay M\u00E9dio (50%)',
+        'Overlay Forte (75%)',
+        'Overlay Intenso (100%)',
+      ]
+    > &
+      Schema.Attribute.DefaultTo<'Sem Overlay (0%)'>;
+    posicao_imagem_fundo: Schema.Attribute.Enumeration<
+      [
+        'Centro',
+        'Centro Superior',
+        'Centro Inferior',
+        'Esquerda Centro',
+        'Direita Centro',
+        'Esquerda Superior',
+        'Direita Superior',
+        'Esquerda Inferior',
+        'Direita Inferior',
+      ]
+    > &
+      Schema.Attribute.DefaultTo<'Centro'>;
     publishedAt: Schema.Attribute.DateTime;
     subtitulo_pagina: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'Estamos aqui para ajudar e responder suas d\u00FAvidas'>;
@@ -655,6 +689,30 @@ export interface ApiPaginaNoticiasPaginaNoticias
       'api::pagina-noticias.pagina-noticias'
     > &
       Schema.Attribute.Private;
+    opacidade_overlay: Schema.Attribute.Enumeration<
+      [
+        'Sem Overlay (0%)',
+        'Overlay Leve (25%)',
+        'Overlay M\u00E9dio (50%)',
+        'Overlay Forte (75%)',
+        'Overlay Intenso (100%)',
+      ]
+    > &
+      Schema.Attribute.DefaultTo<'Sem Overlay (0%)'>;
+    posicao_imagem_fundo: Schema.Attribute.Enumeration<
+      [
+        'Centro',
+        'Centro Superior',
+        'Centro Inferior',
+        'Esquerda Centro',
+        'Direita Centro',
+        'Esquerda Superior',
+        'Direita Superior',
+        'Esquerda Inferior',
+        'Direita Inferior',
+      ]
+    > &
+      Schema.Attribute.DefaultTo<'Centro'>;
     publishedAt: Schema.Attribute.DateTime;
     subtitulo_pagina: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'Fique por dentro das novidades e eventos da Renda de Fil\u00E9'>;
@@ -691,6 +749,30 @@ export interface ApiPaginaProdutosPaginaProdutos
       'api::pagina-produtos.pagina-produtos'
     > &
       Schema.Attribute.Private;
+    opacidade_overlay: Schema.Attribute.Enumeration<
+      [
+        'Sem Overlay (0%)',
+        'Overlay Leve (25%)',
+        'Overlay M\u00E9dio (50%)',
+        'Overlay Forte (75%)',
+        'Overlay Intenso (100%)',
+      ]
+    > &
+      Schema.Attribute.DefaultTo<'Sem Overlay (0%)'>;
+    posicao_imagem_fundo: Schema.Attribute.Enumeration<
+      [
+        'Centro',
+        'Centro Superior',
+        'Centro Inferior',
+        'Esquerda Centro',
+        'Direita Centro',
+        'Esquerda Superior',
+        'Direita Superior',
+        'Esquerda Inferior',
+        'Direita Inferior',
+      ]
+    > &
+      Schema.Attribute.DefaultTo<'Centro'>;
     publishedAt: Schema.Attribute.DateTime;
     subtitulo_pagina: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'Descubra a beleza e qualidade da Renda de Fil\u00E9'>;
@@ -731,7 +813,33 @@ export interface ApiPaginaSobrePaginaSobre extends Struct.SingleTypeSchema {
       'api::pagina-sobre.pagina-sobre'
     > &
       Schema.Attribute.Private;
+    opacidade_overlay: Schema.Attribute.Enumeration<
+      [
+        'Sem Overlay (0%)',
+        'Overlay Leve (25%)',
+        'Overlay M\u00E9dio (50%)',
+        'Overlay Forte (75%)',
+        'Overlay Intenso (100%)',
+      ]
+    > &
+      Schema.Attribute.DefaultTo<'Sem Overlay (0%)'>;
+    posicao_imagem_fundo: Schema.Attribute.Enumeration<
+      [
+        'Centro',
+        'Centro Superior',
+        'Centro Inferior',
+        'Esquerda Centro',
+        'Direita Centro',
+        'Esquerda Superior',
+        'Direita Superior',
+        'Esquerda Inferior',
+        'Direita Inferior',
+      ]
+    > &
+      Schema.Attribute.DefaultTo<'Centro'>;
     publishedAt: Schema.Attribute.DateTime;
+    subtitulo_pagina: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Conhe\u00E7a a hist\u00F3ria e o processo de cria\u00E7\u00E3o desta arte tradicional'>;
     titulo_pagina: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'Sobre a Renda de Fil\u00E9'>;

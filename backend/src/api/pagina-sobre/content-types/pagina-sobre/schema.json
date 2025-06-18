@@ -57,6 +57,10 @@
         "images"
       ]
     },
+    "subtitulo_pagina": {
+      "type": "string",
+      "default": "Conheça a história e o processo de criação desta arte tradicional"
+    },
     "imagem_fundo_cabecalho": {
       "type": "media",
       "multiple": false,
@@ -64,6 +68,34 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "posicao_imagem_fundo": {
+      "type": "enumeration",
+      "enum": [
+        "Centro",
+        "Centro Superior",
+        "Centro Inferior",
+        "Esquerda Centro",
+        "Direita Centro",
+        "Esquerda Superior",
+        "Direita Superior",
+        "Esquerda Inferior",
+        "Direita Inferior"
+      ],
+      "default": "Centro",
+      "required": false
+    },
+    "opacidade_overlay": {
+      "type": "enumeration",
+      "enum": [
+        "Sem Overlay (0%)",
+        "Overlay Leve (25%)",
+        "Overlay Médio (50%)",
+        "Overlay Forte (75%)",
+        "Overlay Intenso (100%)"
+      ],
+      "default": "Sem Overlay (0%)",
+      "required": false
     }
   }
 }

@@ -7,6 +7,7 @@ interface PageHeaderProps {
   subtitle?: string;
   backgroundImage?: any;
   backgroundPosition?: string;
+  overlayOpacity?: number;
   className?: string;
 }
 
@@ -15,13 +16,16 @@ export default function PageHeader({
   subtitle,
   backgroundImage,
   backgroundPosition = 'center center',
+  overlayOpacity = 0.5,
   className = ''
 }: PageHeaderProps) {
   // Obter URL da imagem se existir
   const imageUrl = backgroundImage ? getStrapiImageUrl(backgroundImage) : null;
 
+
+
   return (
-    <div className={`relative min-h-[400px] flex items-center justify-center overflow-hidden ${className}`}>
+    <div className={`relative min-h-[300px] md:min-h-[400px] flex items-center justify-center overflow-hidden ${className}`}>
       {/* Imagem de fundo ou gradiente */}
       {imageUrl ? (
         <div
@@ -40,15 +44,25 @@ export default function PageHeader({
         />
       )}
 
-      {/* Overlay para melhorar legibilidade */}
-      <div
-        className="absolute inset-0 w-full h-full"
-        style={{
-          background: imageUrl
-            ? 'linear-gradient(rgba(0, 0, 0, 0.3), rgba(234, 88, 12, 0.6))'
-            : 'rgba(0, 0, 0, 0.1)'
-        }}
-      />
+      {/* Gradiente fixo para melhorar legibilidade */}
+      {imageUrl && (
+        <div
+          className="absolute inset-0 w-full h-full"
+          style={{
+            background: `linear-gradient(to top, rgba(234, 88, 12, 1) 0%, rgba(234, 88, 12, 0.8) 15%, rgba(234, 88, 12, 0.6) 30%, rgba(234, 88, 12, 0.4) 50%, rgba(234, 88, 12, 0.2) 75%, rgba(234, 88, 12, 0.05) 98%, transparent 100%)`
+          }}
+        />
+      )}
+
+      {/* Overlay sólido controlado pelo Strapi */}
+      {overlayOpacity > 0 && (
+        <div
+          className="absolute inset-0 w-full h-full"
+          style={{
+            backgroundColor: `rgba(234, 88, 12, ${overlayOpacity})`
+          }}
+        />
+      )}
 
       {/* Conteúdo */}
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">

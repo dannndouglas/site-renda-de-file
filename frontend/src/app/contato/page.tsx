@@ -4,6 +4,36 @@ import { useState, useEffect } from 'react';
 import { getPaginaContato } from '@/lib/strapi';
 import PageHeader from '@/components/PageHeader';
 
+// Função para converter posições em português para CSS
+function converterPosicaoParaCSS(posicao: string): string {
+  const mapeamento: { [key: string]: string } = {
+    'Centro': 'center center',
+    'Centro Superior': 'center top',
+    'Centro Inferior': 'center bottom',
+    'Esquerda Centro': 'left center',
+    'Direita Centro': 'right center',
+    'Esquerda Superior': 'left top',
+    'Direita Superior': 'right top',
+    'Esquerda Inferior': 'left bottom',
+    'Direita Inferior': 'right bottom'
+  };
+
+  return mapeamento[posicao] || 'center center';
+}
+
+// Função para converter opacidade em português para valor numérico
+function converterOpacidadeParaCSS(opacidade: string): number {
+  const mapeamento: { [key: string]: number } = {
+    'Sem Overlay (0%)': 0,
+    'Overlay Leve (25%)': 0.25,
+    'Overlay Médio (50%)': 0.5,
+    'Overlay Forte (75%)': 0.75,
+    'Overlay Intenso (100%)': 1
+  };
+
+  return mapeamento[opacidade] || 0;
+}
+
 export default function ContatoPage() {
   const [formData, setFormData] = useState({
     nome: '',
@@ -62,10 +92,11 @@ export default function ContatoPage() {
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <PageHeader
-        title={paginaContato?.titulo || paginaContato?.attributes?.titulo || 'Entre em Contato'}
-        subtitle={paginaContato?.subtitulo || paginaContato?.attributes?.subtitulo || 'Estamos aqui para ajudar e responder suas dúvidas sobre a Renda de Filé'}
+        title={paginaContato?.titulo_pagina || paginaContato?.attributes?.titulo_pagina || 'Entre em Contato'}
+        subtitle={paginaContato?.subtitulo_pagina || paginaContato?.attributes?.subtitulo_pagina || 'Estamos aqui para ajudar e responder suas dúvidas sobre a Renda de Filé'}
         backgroundImage={paginaContato?.imagem_fundo_cabecalho || paginaContato?.attributes?.imagem_fundo_cabecalho}
-        backgroundPosition="center top"
+        backgroundPosition={converterPosicaoParaCSS(paginaContato?.posicao_imagem_fundo || paginaContato?.attributes?.posicao_imagem_fundo || "Centro")}
+        overlayOpacity={converterOpacidadeParaCSS(paginaContato?.opacidade_overlay || paginaContato?.attributes?.opacidade_overlay || "Sem Overlay (0%)")}
       />
 
       {/* Formulário e Informações */}
