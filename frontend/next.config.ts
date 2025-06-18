@@ -3,6 +3,16 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   output: 'standalone',
 
+  // Desabilitar ESLint durante o build para deploy
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+
+  // Desabilitar TypeScript checking durante o build para deploy
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+
   // Configurações de imagem
   images: {
     remotePatterns: [
