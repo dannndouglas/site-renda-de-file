@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: strapi-renda-de-file
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_CLIENT
+        value: postgres
+      - key: HOST
+        value: 0.0.0.0
+      - key: PORT
+        value: 10000
+      - key: DATABASE_SSL
+        value: true
+    
+  - type: pserv
+    name: postgres-renda-de-file
+    env: postgres
+    plan: free
+    databaseName: strapi
+    databaseUser: strapi
