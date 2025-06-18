@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getNoticiasEventos, convertRichTextToPlainText, getStrapiImageUrl } from '@/lib/strapi';
+import ImageGallery from '@/components/ImageGallery';
 
 interface Props {
   params: {
@@ -125,20 +126,10 @@ export default async function NoticiaDetalhePage({ params }: Props) {
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <h2 className="text-3xl font-bold text-gray-800 text-center mb-12">
-                Galeria de Fotos
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {(noticia.galeria || noticia.attributes?.galeria || []).map((foto: any, index: number) => (
-                  <div key={index} className="relative group">
-                    <img
-                      src={getStrapiImageUrl(foto)}
-                      alt={foto.alternativeText || foto.attributes?.alternativeText || `Foto ${index + 1}`}
-                      className="w-full h-64 object-cover rounded-lg shadow-md group-hover:shadow-lg transition-shadow duration-200"
-                    />
-                  </div>
-                ))}
-              </div>
+              <ImageGallery
+                images={noticia.galeria || noticia.attributes?.galeria || []}
+                title="Galeria de Fotos"
+              />
             </div>
           </div>
         </section>

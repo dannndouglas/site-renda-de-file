@@ -1,5 +1,6 @@
 import { getPaginaSobre, getStrapiImageUrl, convertRichTextToPlainText } from '@/lib/strapi';
 import PageHeader from '@/components/PageHeader';
+import ImageGallery from '@/components/ImageGallery';
 
 export default async function SobrePage() {
   const paginaSobre = await getPaginaSobre();
@@ -145,20 +146,10 @@ export default async function SobrePage() {
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-12">
-                Galeria de Imagens
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {(paginaSobre.galeria_imagens || paginaSobre.attributes?.galeria_imagens || []).map((imagem: any, index: number) => (
-                  <div key={index} className="relative group">
-                    <img
-                      src={getStrapiImageUrl(imagem)}
-                      alt={imagem.alternativeText || imagem.attributes?.alternativeText || `Imagem ${index + 1}`}
-                      className="w-full h-64 object-cover rounded-lg shadow-md group-hover:shadow-lg transition-shadow duration-200"
-                    />
-                  </div>
-                ))}
-              </div>
+              <ImageGallery
+                images={paginaSobre.galeria_imagens || paginaSobre.attributes?.galeria_imagens || []}
+                title="Galeria de Imagens"
+              />
             </div>
           </div>
         </section>

@@ -28,9 +28,22 @@ strapiApi.interceptors.response.use(
     return response;
   },
   (error) => {
-    console.error('❌ Erro na resposta:', error.message, error.config?.url);
-    if (error.code === 'ECONNREFUSED') {
-      console.error('🔌 Conexão recusada - verifique se o backend está rodando');
+    // Lista de endpoints que podem retornar 404 sem ser um erro real
+    const expectedNotFoundEndpoints = [
+      '/pagina-associacoes',
+      '/pagina-produtos',
+      '/pagina-noticias',
+      '/pagina-contato'
+    ];
+
+    const isExpected404 = error.response?.status === 404 &&
+      expectedNotFoundEndpoints.some(endpoint => error.config?.url?.includes(endpoint));
+
+    if (!isExpected404) {
+      console.error('❌ Erro na resposta:', error.message, error.config?.url);
+      if (error.code === 'ECONNREFUSED') {
+        console.error('🔌 Conexão recusada - verifique se o backend está rodando');
+      }
     }
     return Promise.reject(error);
   }
@@ -417,7 +430,7 @@ export const getPaginaAssociacoes = async (): Promise<any | null> => {
     return response.data.data;
   } catch (error: any) {
     if (error.response?.status === 404) {
-      // Página não existe ainda no Strapi, retorna dados padrão
+      // Página não existe ainda no Strapi, retorna dados padrão (sem log de erro)
       return {
         titulo: 'Nossas Associações',
         subtitulo: 'Conheça as associações parceiras que preservam a tradição da Renda de Filé',
@@ -435,7 +448,7 @@ export const getPaginaProdutos = async (): Promise<any | null> => {
     return response.data.data;
   } catch (error: any) {
     if (error.response?.status === 404) {
-      // Página não existe ainda no Strapi, retorna dados padrão
+      // Página não existe ainda no Strapi, retorna dados padrão (sem log de erro)
       return {
         titulo: 'Nossos Produtos',
         subtitulo: 'Descubra a beleza e qualidade dos produtos artesanais em Renda de Filé',
@@ -453,7 +466,7 @@ export const getPaginaNoticias = async (): Promise<any | null> => {
     return response.data.data;
   } catch (error: any) {
     if (error.response?.status === 404) {
-      // Página não existe ainda no Strapi, retorna dados padrão
+      // Página não existe ainda no Strapi, retorna dados padrão (sem log de erro)
       return {
         titulo: 'Notícias e Eventos',
         subtitulo: 'Fique por dentro das novidades e eventos da Renda de Filé',

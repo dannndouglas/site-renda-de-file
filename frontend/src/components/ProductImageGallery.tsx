@@ -13,7 +13,10 @@ export default function ProductImageGallery({ images, productName }: ProductImag
   const [imagemSelecionada, setImagemSelecionada] = useState<number | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  if (!images || images.length === 0) {
+  // Limitar a 8 imagens conforme solicitado
+  const imagensLimitadas = images?.slice(0, 8) || [];
+
+  if (!imagensLimitadas || imagensLimitadas.length === 0) {
     return (
       <div className="aspect-square bg-gray-100 rounded-lg flex items-center justify-center">
         <p className="text-gray-500">Sem imagens disponíveis</p>
@@ -31,13 +34,13 @@ export default function ProductImageGallery({ images, productName }: ProductImag
 
   const proximaImagem = () => {
     if (imagemSelecionada !== null) {
-      setImagemSelecionada((imagemSelecionada + 1) % images.length);
+      setImagemSelecionada((imagemSelecionada + 1) % imagensLimitadas.length);
     }
   };
 
   const imagemAnterior = () => {
     if (imagemSelecionada !== null) {
-      setImagemSelecionada(imagemSelecionada === 0 ? images.length - 1 : imagemSelecionada - 1);
+      setImagemSelecionada(imagemSelecionada === 0 ? imagensLimitadas.length - 1 : imagemSelecionada - 1);
     }
   };
 
@@ -69,7 +72,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
             onClick={() => abrirModal(currentImageIndex)}
           >
             <img
-              src={getStrapiImageUrl(images[currentImageIndex])}
+              src={getStrapiImageUrl(imagensLimitadas[currentImageIndex])}
               alt={`${productName} - Imagem ${currentImageIndex + 1}`}
               className="w-full h-full object-contain transition-transform duration-300"
             />
@@ -85,18 +88,18 @@ export default function ProductImageGallery({ images, productName }: ProductImag
           </motion.div>
 
           {/* Contador de imagens */}
-          {images.length > 1 && (
+          {imagensLimitadas.length > 1 && (
             <div className="text-center mt-2 text-sm text-gray-600">
-              {currentImageIndex + 1} de {images.length} imagens
+              {currentImageIndex + 1} de {imagensLimitadas.length} imagens
             </div>
           )}
         </div>
 
         {/* Carrossel de Miniaturas */}
-        {images.length > 1 && (
+        {imagensLimitadas.length > 1 && (
           <div className="w-full">
             <div className="grid grid-cols-4 gap-2 max-w-md mx-auto">
-              {images.map((image, index) => (
+              {imagensLimitadas.map((image, index) => (
                 <motion.button
                   key={image.id || index}
                   onClick={() => setCurrentImageIndex(index)}
@@ -111,7 +114,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                   <img
                     src={getStrapiImageUrl(image)}
                     alt={`${productName} - Miniatura ${index + 1}`}
-                    className="w-full h-full object-cover transition-opacity duration-200 hover:opacity-80"
+                    className="w-full h-full object-contain transition-opacity duration-200 hover:opacity-80"
                   />
                 </motion.button>
               ))}
@@ -140,7 +143,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
               {/* Container da imagem com tamanho fixo */}
               <div className="w-full h-full flex items-center justify-center">
                 <img
-                  src={getStrapiImageUrl(images[imagemSelecionada])}
+                  src={getStrapiImageUrl(imagensLimitadas[imagemSelecionada])}
                   alt={`${productName} - Imagem ${imagemSelecionada + 1}`}
                   className="w-full h-full object-contain rounded-lg"
                   style={{
@@ -162,7 +165,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
               </button>
 
               {/* Navegação */}
-              {images.length > 1 && (
+              {imagensLimitadas.length > 1 && (
                 <>
                   <button
                     onClick={imagemAnterior}
@@ -185,7 +188,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
 
               {/* Contador no modal */}
               <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full text-sm z-10 backdrop-blur-sm">
-                {imagemSelecionada + 1} / {images.length}
+                {imagemSelecionada + 1} / {imagensLimitadas.length}
               </div>
             </motion.div>
           </motion.div>
