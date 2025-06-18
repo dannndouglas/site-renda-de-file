@@ -409,7 +409,7 @@ export default function DynamicHomePage() {
       </section>
 
       {/* Seção de Associações */}
-      <section className="py-20 bg-white relative overflow-hidden">
+      <section className="py-20 bg-white relative">
         {/* Elementos decorativos de fundo */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-20 right-10 w-72 h-72 bg-amber-300 rounded-full blur-3xl"></div>
@@ -417,7 +417,7 @@ export default function DynamicHomePage() {
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-6xl mx-auto px-4">
             <div className="text-center mb-16">
               <div className="inline-block">
                 <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4 relative">
@@ -431,7 +431,7 @@ export default function DynamicHomePage() {
             </div>
 
             {associacoes.length > 0 ? (
-              <div className="mb-16">
+              <div className="mb-12">
                 <CarrosselAssociacoes associacoes={associacoes} />
               </div>
             ) : (

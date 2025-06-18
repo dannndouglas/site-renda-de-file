@@ -47,9 +47,9 @@ export default function CarrosselAssociacoes({ associacoes }: CarrosselAssociaco
   const canGoPrev = currentIndex > 0;
 
   return (
-    <div className="relative">
+    <div className="relative pb-2">
       {/* Container do carrossel */}
-      <div className="overflow-hidden" ref={carouselRef}>
+      <div className="overflow-hidden pb-6 px-4" ref={carouselRef}>
         <div
           className="flex transition-transform duration-500 ease-in-out"
           style={{
@@ -59,14 +59,14 @@ export default function CarrosselAssociacoes({ associacoes }: CarrosselAssociaco
           {associacoes.map((associacao: any, index: number) => (
             <motion.div
               key={associacao.id}
-              className="px-4"
+              className="px-3 pb-4"
               style={{ width: `${100 / itemsPerView}%`, flexShrink: 0 }}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 * index }}
             >
               <Link href={`/associacoes/${associacao.attributes?.slug || associacao.slug}`}>
-                <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 overflow-hidden">
+                <div className="group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] overflow-hidden">
                   {/* Imagem de Prévia da Associação */}
                   <div className="h-48 bg-gradient-to-br from-amber-100 to-orange-200 overflow-hidden relative">
                     {(associacao.imagem_previa || associacao.attributes?.imagem_previa) ? (
@@ -84,23 +84,6 @@ export default function CarrosselAssociacoes({ associacoes }: CarrosselAssociaco
                         </div>
                       </div>
                     )}
-                    
-                    {/* Overlay com logo circular */}
-                    <div className="absolute bottom-4 left-4">
-                      <div className="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden">
-                        {(associacao.logo || associacao.attributes?.logo) ? (
-                          <img
-                            src={getStrapiImageUrl(associacao.logo || associacao.attributes?.logo)}
-                            alt={`Logo da ${associacao.attributes?.nome || associacao.nome}`}
-                            className="w-full h-full object-contain p-1"
-                          />
-                        ) : (
-                          <span className="text-amber-600 font-bold text-lg">
-                            {(associacao.attributes?.nome || associacao.nome || 'A').charAt(0)}
-                          </span>
-                        )}
-                      </div>
-                    </div>
                   </div>
 
                   {/* Conteúdo */}
@@ -139,7 +122,7 @@ export default function CarrosselAssociacoes({ associacoes }: CarrosselAssociaco
       {canGoPrev && (
         <button
           onClick={prevSlide}
-          className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 z-10 group"
+          className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 z-10 group"
         >
           <svg className="w-6 h-6 text-gray-600 group-hover:text-amber-600 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -150,7 +133,7 @@ export default function CarrosselAssociacoes({ associacoes }: CarrosselAssociaco
       {canGoNext && (
         <button
           onClick={nextSlide}
-          className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 z-10 group"
+          className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 z-10 group"
         >
           <svg className="w-6 h-6 text-gray-600 group-hover:text-amber-600 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -160,10 +143,10 @@ export default function CarrosselAssociacoes({ associacoes }: CarrosselAssociaco
 
       {/* Efeito de esmaecimento nas bordas - só aparece quando há itens para navegar */}
       {canGoPrev && (
-        <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-white to-transparent pointer-events-none z-[5]"></div>
+        <div className="absolute left-0 top-0 bottom-6 w-16 bg-gradient-to-r from-white to-transparent pointer-events-none z-[5]"></div>
       )}
       {canGoNext && (
-        <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-white to-transparent pointer-events-none z-[5]"></div>
+        <div className="absolute right-0 top-0 bottom-6 w-16 bg-gradient-to-l from-white to-transparent pointer-events-none z-[5]"></div>
       )}
     </div>
   );
