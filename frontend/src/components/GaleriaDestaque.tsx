@@ -142,7 +142,7 @@ export default function GaleriaDestaque({ imagens }: GaleriaDestaqueProps) {
         {canGoPrev && (
           <button
             onClick={prevSlide}
-            className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-3 transition-all duration-300 z-10 group"
+            className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 z-10 group"
           >
             <svg className="w-6 h-6 text-gray-600 group-hover:text-amber-600 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -153,7 +153,7 @@ export default function GaleriaDestaque({ imagens }: GaleriaDestaqueProps) {
         {canGoNext && (
           <button
             onClick={nextSlide}
-            className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-3 transition-all duration-300 z-10 group"
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 z-10 group"
           >
             <svg className="w-6 h-6 text-gray-600 group-hover:text-amber-600 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
