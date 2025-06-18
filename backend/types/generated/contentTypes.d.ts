@@ -514,6 +514,20 @@ export interface ApiPaginaAssociacoesPaginaAssociacoes
       'api::pagina-associacoes.pagina-associacoes'
     > &
       Schema.Attribute.Private;
+    posicao_imagem_fundo: Schema.Attribute.Enumeration<
+      [
+        'Centro',
+        'Centro Superior',
+        'Centro Inferior',
+        'Esquerda Centro',
+        'Direita Centro',
+        'Esquerda Superior',
+        'Direita Superior',
+        'Esquerda Inferior',
+        'Direita Inferior',
+      ]
+    > &
+      Schema.Attribute.DefaultTo<'Centro'>;
     publishedAt: Schema.Attribute.DateTime;
     subtitulo_pagina: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'Conhe\u00E7a as talentosas artes\u00E3s que preservam nossa tradi\u00E7\u00E3o'>;

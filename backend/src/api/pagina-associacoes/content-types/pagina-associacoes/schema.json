@@ -29,6 +29,22 @@
         "images"
       ]
     },
+    "posicao_imagem_fundo": {
+      "type": "enumeration",
+      "enum": [
+        "Centro",
+        "Centro Superior",
+        "Centro Inferior",
+        "Esquerda Centro",
+        "Direita Centro",
+        "Esquerda Superior",
+        "Direita Superior",
+        "Esquerda Inferior",
+        "Direita Inferior"
+      ],
+      "default": "Centro",
+      "required": false
+    },
     "conteudo_introducao": {
       "type": "blocks",
       "required": false

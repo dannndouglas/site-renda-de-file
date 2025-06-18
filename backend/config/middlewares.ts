@@ -7,9 +7,9 @@ export default [
       contentSecurityPolicy: {
         useDefaults: true,
         directives: {
-          'connect-src': ["'self'", 'https:'],
-          'img-src': ["'self'", 'data:', 'blob:', 'market-assets.strapi.io'],
-          'media-src': ["'self'", 'data:', 'blob:'],
+          'connect-src': ["'self'", 'https:', 'http://localhost:*'],
+          'img-src': ["'self'", 'data:', 'blob:', 'market-assets.strapi.io', 'http://localhost:*'],
+          'media-src': ["'self'", 'data:', 'blob:', 'http://localhost:*'],
           upgradeInsecureRequests: null,
         },
       },

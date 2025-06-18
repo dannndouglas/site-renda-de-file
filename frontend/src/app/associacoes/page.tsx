@@ -2,6 +2,23 @@ import Link from 'next/link';
 import { getAssociacoes, convertRichTextToPlainText, getStrapiImageUrl, getPaginaAssociacoes } from '@/lib/strapi';
 import PageHeader from '@/components/PageHeader';
 
+// Função para converter posições em português para CSS
+function converterPosicaoParaCSS(posicao: string): string {
+  const mapeamento: { [key: string]: string } = {
+    'Centro': 'center center',
+    'Centro Superior': 'center top',
+    'Centro Inferior': 'center bottom',
+    'Esquerda Centro': 'left center',
+    'Direita Centro': 'right center',
+    'Esquerda Superior': 'left top',
+    'Direita Superior': 'right top',
+    'Esquerda Inferior': 'left bottom',
+    'Direita Inferior': 'right bottom'
+  };
+
+  return mapeamento[posicao] || 'center center';
+}
+
 export default async function AssociacoesPage() {
   const [associacoes, paginaAssociacoes] = await Promise.all([
     getAssociacoes(),
@@ -10,19 +27,20 @@ export default async function AssociacoesPage() {
 
   // Dados padrão quando a página não existe no Strapi
   const dadosPagina = paginaAssociacoes || {
-    titulo: 'Nossas Associações',
-    subtitulo: 'Conheça as associações parceiras que preservam a tradição da Renda de Filé',
-    imagem_fundo_cabecalho: null
+    titulo_pagina: 'Nossas Associações',
+    subtitulo_pagina: 'Conheça as associações parceiras que preservam a tradição da Renda de Filé',
+    imagem_fundo_cabecalho: null,
+    posicao_imagem_fundo: 'Centro Superior'
   };
 
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <PageHeader
-        title={dadosPagina.titulo || dadosPagina.attributes?.titulo || 'Nossas Associações'}
-        subtitle={dadosPagina.subtitulo || dadosPagina.attributes?.subtitulo || 'Conheça as associações parceiras que preservam a tradição da Renda de Filé'}
+        title={dadosPagina.titulo_pagina || dadosPagina.attributes?.titulo_pagina || 'Nossas Associações'}
+        subtitle={dadosPagina.subtitulo_pagina || dadosPagina.attributes?.subtitulo_pagina || 'Conheça as associações parceiras que preservam a tradição da Renda de Filé'}
         backgroundImage={dadosPagina.imagem_fundo_cabecalho || dadosPagina.attributes?.imagem_fundo_cabecalho}
-        backgroundPosition="center top"
+        backgroundPosition={converterPosicaoParaCSS(dadosPagina.posicao_imagem_fundo || dadosPagina.attributes?.posicao_imagem_fundo || "Centro")}
       />
 
       {/* Lista de Associações */}

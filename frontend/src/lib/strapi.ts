@@ -432,8 +432,8 @@ export const getPaginaAssociacoes = async (): Promise<any | null> => {
     if (error.response?.status === 404) {
       // Página não existe ainda no Strapi, retorna dados padrão (sem log de erro)
       return {
-        titulo: 'Nossas Associações',
-        subtitulo: 'Conheça as associações parceiras que preservam a tradição da Renda de Filé',
+        titulo_pagina: 'Nossas Associações',
+        subtitulo_pagina: 'Conheça as associações parceiras que preservam a tradição da Renda de Filé',
         imagem_fundo_cabecalho: null
       };
     }
