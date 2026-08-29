@@ -1,35 +1,38 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import type { Metadata } from 'next';
+import { Cormorant_Garamond, Karla } from 'next/font/google';
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
+import Footer from '@/components/Footer';
+import Header from '@/components/Header';
+
+import './globals.css';
+
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  variable: '--font-cormorant',
+  weight: ['400', '500', '600'],
+  display: 'swap',
+});
+
+const karla = Karla({
+  subsets: ['latin'],
+  variable: '--font-karla',
+  weight: ['400', '500', '600'],
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
-  title: "Portal da Renda de Filé de Jaguaribe",
-  description: "Portal oficial da Renda de Filé de Jaguaribe - Preservando a cultura e promovendo as associações de artesãos",
-  keywords: "renda de filé, jaguaribe, artesanato, cultura, ceará",
+  title: 'Renda de Filé de Jaguaribe',
+  description: 'Conheça a tradição, as artesãs e as peças da Renda de Filé de Jaguaribe, no Ceará.',
+  keywords: 'renda de filé, Jaguaribe, artesanato cearense, artesãs, cultura, Ceará',
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${inter.variable} font-sans antialiased`}>
-        <div className="min-h-screen flex flex-col">
-          <Header />
-          <main className="flex-grow">
-            {children}
-          </main>
-          <Footer />
-        </div>
+      <body className={`${cormorant.variable} ${karla.variable}`}>
+        <Header />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );

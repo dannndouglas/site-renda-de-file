@@ -10,44 +10,11 @@ export const strapiApi = axios.create({
   timeout: 10000, // 10 segundos de timeout
 });
 
-// Interceptor para debug
-strapiApi.interceptors.request.use(
-  (config) => {
-    console.log('🚀 Fazendo requisição para:', config.baseURL + config.url);
-    return config;
-  },
-  (error) => {
-    console.error('❌ Erro na requisição:', error);
-    return Promise.reject(error);
+const reportStrapiError = (message: string, error: unknown) => {
+  if (process.env.NODE_ENV === 'production') {
+    console.error(message, error);
   }
-);
-
-strapiApi.interceptors.response.use(
-  (response) => {
-    console.log('✅ Resposta recebida:', response.status, response.config.url);
-    return response;
-  },
-  (error) => {
-    // Lista de endpoints que podem retornar 404 sem ser um erro real
-    const expectedNotFoundEndpoints = [
-      '/pagina-associacoes',
-      '/pagina-produtos',
-      '/pagina-noticias',
-      '/pagina-contato'
-    ];
-
-    const isExpected404 = error.response?.status === 404 &&
-      expectedNotFoundEndpoints.some(endpoint => error.config?.url?.includes(endpoint));
-
-    if (!isExpected404) {
-      console.error('❌ Erro na resposta:', error.message, error.config?.url);
-      if (error.code === 'ECONNREFUSED') {
-        console.error('🔌 Conexão recusada - verifique se o backend está rodando');
-      }
-    }
-    return Promise.reject(error);
-  }
-);
+};
 
 // Tipos para os dados do Strapi
 export interface StrapiResponse<T> {
@@ -326,7 +293,7 @@ export const getAssociacoes = async (): Promise<Associacao[]> => {
       }
     }));
   } catch (error) {
-    console.error('Erro ao buscar associações:', error);
+    reportStrapiError('Erro ao buscar associações:', error);
     return [];
   }
 };
@@ -383,7 +350,7 @@ export const getProdutos = async (): Promise<Produto[]> => {
       }
     }));
   } catch (error) {
-    console.error('Erro ao buscar produtos:', error);
+    reportStrapiError('Erro ao buscar produtos:', error);
     return [];
   }
 };
@@ -498,18 +465,14 @@ export const getPaginaContato = async (): Promise<any | null> => {
 
 export const getPaginaInicial = async (): Promise<PaginaInicial | null> => {
   try {
-    // Tentar primeiro com populate simples
-    console.log('Fazendo requisição para página inicial...');
     let response;
 
     try {
       response = await strapiApi.get<StrapiSingleResponse<any>>('/pagina-inicial?populate=*');
-    } catch (error) {
-      console.log('Erro com populate=*, tentando sem populate:', error);
+    } catch {
       response = await strapiApi.get<StrapiSingleResponse<any>>('/pagina-inicial');
     }
 
-    console.log('Resposta da API:', response.data);
     const item = response.data.data;
     if (!item) return null;
 
@@ -537,7 +500,7 @@ export const getPaginaInicial = async (): Promise<PaginaInicial | null> => {
       }
     };
   } catch (error) {
-    console.error('Erro ao buscar página inicial:', error);
+    reportStrapiError('Erro ao buscar página inicial:', error);
     return null;
   }
 };
