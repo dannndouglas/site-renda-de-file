@@ -18,4 +18,15 @@ describe('DynamicHomePage', () => {
     expect(html).not.toContain('Estatísticas');
     expect(html).not.toContain('Notícias');
   });
+
+  it('expõe as cinco seções como paradas da navegação por tela', () => {
+    const html = renderToStaticMarkup(
+      <DynamicHomePage paginaInicial={null} produtos={[]} associacoes={[]} />,
+    );
+
+    expect(html).toContain('class="delicate-home delicate-snap-page"');
+    expect(html.match(/data-home-section="/g)).toHaveLength(5);
+    expect(html.match(/delicate-snap-section/g)).toHaveLength(5);
+    expect(html).toContain('class="delicate-shell delicate-process__layout"');
+  });
 });

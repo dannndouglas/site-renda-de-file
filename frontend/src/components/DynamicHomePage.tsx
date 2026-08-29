@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import { useRef } from 'react';
 
 import {
   type Associacao,
@@ -12,6 +13,7 @@ import {
   convertRichTextToPlainText,
   getStrapiImageUrl,
 } from '@/lib/strapi';
+import { useSectionScroll } from './sectionScroll';
 
 type DynamicHomePageProps = {
   paginaInicial?: PaginaInicial | null;
@@ -74,6 +76,8 @@ export default function DynamicHomePage({
   associacoes = [],
 }: DynamicHomePageProps) {
   const reduceMotion = useReducedMotion();
+  const pageRef = useRef<HTMLDivElement>(null);
+  useSectionScroll(pageRef, reduceMotion);
   const home = homeAttributes(paginaInicial);
   const pieces = productPieces(produtos);
   const history = convertRichTextToPlainText(home?.secao_sobre?.conteudo);
@@ -89,8 +93,8 @@ export default function DynamicHomePage({
     : { duration: 0.75, ease: [0.22, 1, 0.36, 1] as const };
 
   return (
-    <div className="delicate-home">
-      <section className="delicate-hero" aria-labelledby="delicate-hero-title">
+    <div ref={pageRef} className="delicate-home delicate-snap-page">
+      <section className="delicate-hero delicate-snap-section" data-home-section="hero" aria-labelledby="delicate-hero-title">
         <div className="delicate-shell delicate-hero__layout">
           <motion.div
             className="delicate-hero__copy"
@@ -127,7 +131,7 @@ export default function DynamicHomePage({
         </div>
       </section>
 
-      <section className="delicate-history" aria-labelledby="delicate-history-title">
+      <section className="delicate-history delicate-snap-section" data-home-section="history" aria-labelledby="delicate-history-title">
         <div className="delicate-shell delicate-history__layout">
           <motion.figure
             className="delicate-history__image"
@@ -158,7 +162,7 @@ export default function DynamicHomePage({
         </div>
       </section>
 
-      <section className="delicate-pieces" aria-labelledby="delicate-pieces-title">
+      <section className="delicate-pieces delicate-snap-section" data-home-section="pieces" aria-labelledby="delicate-pieces-title">
         <div className="delicate-shell">
           <div className="delicate-section-heading">
             <div>
@@ -199,34 +203,36 @@ export default function DynamicHomePage({
         </div>
       </section>
 
-      <section className="delicate-process" aria-labelledby="delicate-process-title">
-        <div className="delicate-process__image" aria-hidden="true">
-          <Image
-            src="/images/renda-file/processo-faixa.jpg"
-            alt=""
-            fill
-            sizes="(max-width: 820px) 100vw, 50vw"
-            className="delicate-image"
-          />
-        </div>
-        <div className="delicate-process__copy">
-          <div>
-            <p className="delicate-eyebrow">O fazer artesanal</p>
-            <h2 id="delicate-process-title">O tempo de cada ponto</h2>
-            <p>Cada peça percorre um caminho paciente: preparar a trama, desenhar com a linha e deixar que as mãos encontrem o ritmo.</p>
-            <ol className="delicate-process__steps">
-              <li><span>01</span>Preparar</li>
-              <li><span>02</span>Tecer</li>
-              <li><span>03</span>Finalizar</li>
-            </ol>
-            <Link href="/sobre" className="delicate-text-link">
-              Conhecer o processo <ArrowRight aria-hidden="true" size={16} strokeWidth={1.5} />
-            </Link>
+      <section className="delicate-process delicate-snap-section" data-home-section="process" aria-labelledby="delicate-process-title">
+        <div className="delicate-shell delicate-process__layout">
+          <div className="delicate-process__image" aria-hidden="true">
+            <Image
+              src="/images/renda-file/processo-faixa.jpg"
+              alt=""
+              fill
+              sizes="(max-width: 820px) 100vw, 50vw"
+              className="delicate-image"
+            />
+          </div>
+          <div className="delicate-process__copy">
+            <div>
+              <p className="delicate-eyebrow">O fazer artesanal</p>
+              <h2 id="delicate-process-title">O tempo de cada ponto</h2>
+              <p>Cada peça percorre um caminho paciente: preparar a trama, desenhar com a linha e deixar que as mãos encontrem o ritmo.</p>
+              <ol className="delicate-process__steps">
+                <li><span>01</span>Preparar</li>
+                <li><span>02</span>Tecer</li>
+                <li><span>03</span>Finalizar</li>
+              </ol>
+              <Link href="/sobre" className="delicate-text-link">
+                Conhecer o processo <ArrowRight aria-hidden="true" size={16} strokeWidth={1.5} />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="delicate-makers" aria-labelledby="delicate-makers-title">
+      <section className="delicate-makers delicate-snap-section" data-home-section="makers" aria-labelledby="delicate-makers-title">
         <div className="delicate-shell delicate-makers__content">
           <p className="delicate-eyebrow">Quem faz</p>
           <h2 id="delicate-makers-title">Conheça quem mantém essa história viva</h2>
