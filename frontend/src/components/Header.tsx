@@ -5,19 +5,49 @@ import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
-const menuItems = [
+import { getConfiguracaoSite, type ConfiguracaoSite } from '@/lib/strapi';
+
+type ConfiguredMenuItem = NonNullable<ConfiguracaoSite['attributes']['menu_items']>[number];
+type HeaderMenuItem = { label: string; href: string };
+
+const fallbackMenuItems: HeaderMenuItem[] = [
   { label: 'Início', href: '/' },
   { label: 'História', href: '/sobre' },
   { label: 'Peças', href: '/produtos' },
   { label: 'Artesãs', href: '/associacoes' },
+  { label: 'Notícias', href: '/noticias' },
   { label: 'Contato', href: '/contato' },
 ];
+
+export function resolveHeaderMenuItems(items?: ConfiguredMenuItem[] | null): HeaderMenuItem[] {
+  const configuredItems = [...(items ?? [])]
+    .filter((item) => item.label?.trim() && item.url?.trim())
+    .sort((a, b) => a.ordem - b.ordem)
+    .map(({ label, url }) => ({ label, href: url }));
+
+  return configuredItems.length > 0 ? configuredItems : fallbackMenuItems;
+}
 
 export default function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [menuItems, setMenuItems] = useState<HeaderMenuItem[]>(() => resolveHeaderMenuItems());
 
   useEffect(() => setOpen(false), [pathname]);
+
+  useEffect(() => {
+    let isCurrent = true;
+
+    void getConfiguracaoSite().then((configuracao) => {
+      if (isCurrent) {
+        setMenuItems(resolveHeaderMenuItems(configuracao?.attributes.menu_items));
+      }
+    });
+
+    return () => {
+      isCurrent = false;
+    };
+  }, []);
 
   const active = (href: string) => href === '/' ? pathname === '/' : pathname.startsWith(href);
 
